@@ -1,0 +1,40 @@
+# PDF Processing
+PyPDF2==3.0.1
+
+# API Integration
+anthropic>=0.20.0
+requests==2.31.0
+
+# Data Processing
+pandas==2.1.4
+numpy==1.24.3
+
+# Graph Processing (for future Neo4j integration)
+neo4j==5.15.0
+networkx==3.2.1
+
+# Web Framework (if we add Flask/FastAPI later)
+flask==3.0.0
+fastapi==0.104.1
+uvicorn==0.24.0
+
+# Utilities
+python-dotenv==1.0.0
+pydantic==2.5.2
+typing-extensions==4.8.0
+
+# Development/Testing
+pytest==7.4.3
+black==23.11.0
+flake8==6.1.0
+
+# Optional: For enhanced PDF processing
+pdfplumber==0.10.3
+pymupdf==1.23.8
+
+# NuExtract Local Processing
+transformers==4.36.2
+torch==2.1.2
+accelerate==0.25.0
+sentencepiece==0.1.99
+protobuf==4.25.1

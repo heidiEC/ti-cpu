@@ -1,0 +1,1886 @@
+[
+  {
+    "title": "3 System Control and Interrupts",
+    "entities": {
+      "error_conditions": [
+        "Bus fault",
+        "Stack overflow",
+        "Brownout reset",
+        "Missing clock detection",
+        "Watchdog reset",
+        "NMI watchdog reset",
+        "Power-on reset",
+        "External reset"
+      ],
+      "status_indicators": [
+        "EALLOW bit",
+        "DCDCSTS.SWSEQDON",
+        "DCDCSTS.INDDETECT",
+        "DCDCCTL.DCDCEN bit",
+        "XRSn bit in RESC register",
+        "RESC register bits"
+      ],
+      "components": [
+        "CPU",
+        "System control module",
+        "PLL",
+        "DMA controller",
+        "ADC",
+        "Watchdog timer",
+        "32-bit CPU timers",
+        "Memory controller module",
+        "Flash memory",
+        "OTP memory",
+        "Dual Code Security Module",
+        "Internal DC-DC regulator",
+        "Internal LDO",
+        "JTAG",
+        "Peripherals",
+        "RAM",
+        "Boot ROM"
+      ],
+      "root_causes": [
+        "Invalid pointer dereference",
+        "Incorrect clock configuration",
+        "Hardware connection issues",
+        "Inductor not detected on VSW pin",
+        "Spurious CPU writes",
+        "Missing VREGENZ low signal"
+      ],
+      "solutions": [
+        "Reset the device",
+        "Check memory allocation",
+        "Inspect register values",
+        "Set EALLOW bit",
+        "Execute EALLOW instruction",
+        "Execute EDIS instruction",
+        "Wait for DCDCSTS.SWSEQDON to equal 0x1",
+        "Check hardware connections",
+        "Delay 80\u03bcs for DC-DC regulator output to settle",
+        "Clear DCDCCTL.DCDCEN bit",
+        "Write ones to RESCCLR register",
+        "Check DCDCSTS.INDDETECT bit"
+      ]
+    },
+    "relationships": {
+      "indicator_to_error": {
+        "EALLOW bit": [
+          "Spurious CPU writes"
+        ],
+        "DCDCSTS.SWSEQDON": [
+          "Hardware connection issues"
+        ],
+        "DCDCSTS.INDDETECT": [
+          "Inductor not detected on VSW pin"
+        ],
+        "DCDCCTL.DCDCEN bit": [
+          "Hardware connection issues"
+        ],
+        "XRSn bit in RESC register": [
+          "External reset"
+        ],
+        "RESC register bits": [
+          "Power-on reset",
+          "External reset",
+          "Watchdog reset",
+          "NMI watchdog reset",
+          "Brownout reset"
+        ]
+      },
+      "error_to_cause": {
+        "Bus fault": [
+          "Invalid pointer dereference"
+        ],
+        "Stack overflow": [
+          "Invalid pointer dereference"
+        ],
+        "Brownout reset": [
+          "Hardware connection issues"
+        ],
+        "Missing clock detection": [
+          "Incorrect clock configuration"
+        ],
+        "Watchdog reset": [
+          "Incorrect clock configuration"
+        ],
+        "NMI watchdog reset": [
+          "Incorrect clock configuration"
+        ],
+        "Power-on reset": [
+          "Hardware connection issues"
+        ],
+        "External reset": [
+          "Hardware connection issues"
+        ],
+        "Spurious CPU writes": [
+          "Missing VREGENZ low signal"
+        ],
+        "Hardware connection issues": [
+          "Missing VREGENZ low signal"
+        ],
+        "Inductor not detected on VSW pin": [
+          "Hardware connection issues"
+        ]
+      },
+      "cause_to_solution": {
+        "Invalid pointer dereference": [
+          "Reset the device",
+          "Check memory allocation",
+          "Inspect register values"
+        ],
+        "Incorrect clock configuration": [
+          "Reset the device",
+          "Inspect register values"
+        ],
+        "Hardware connection issues": [
+          "Check hardware connections",
+          "Reset the device"
+        ],
+        "Inductor not detected on VSW pin": [
+          "Check DCDCSTS.INDDETECT bit",
+          "Check hardware connections"
+        ],
+        "Spurious CPU writes": [
+          "Set EALLOW bit",
+          "Execute EALLOW instruction",
+          "Execute EDIS instruction"
+        ],
+        "Missing VREGENZ low signal": [
+          "Check hardware connections",
+          "Wait for DCDCSTS.SWSEQDON to equal 0x1",
+          "Delay 80\u03bcs for DC-DC regulator output to settle",
+          "Clear DCDCCTL.DCDCEN bit",
+          "Write ones to RESCCLR register"
+        ]
+      }
+    }
+  },
+  {
+    "title": "3.4.4 Debugger Reset (SYSRS)",
+    "entities": {
+      "error_conditions": [
+        "Watchdog timer not serviced",
+        "Hardware errors in the system",
+        "Vector fetch occurs in a safe copy or CRC function",
+        "Security breaches"
+      ],
+      "status_indicators": [
+        "POR bit in RESC is set",
+        "XRSn bit in RESC is set",
+        "WDRSn bit in RESC is set",
+        "NMIWDRSn bit in RESC is set",
+        "SCCRESETn bit in RESC is set"
+      ],
+      "components": [
+        "Power-on reset (POR) circuit",
+        "XRS pin",
+        "GPIOs",
+        "Reset cause register (RESC)",
+        "NMI shadow flag register (NMISHDFLG)",
+        "X1 clock counter register (X1CNT)",
+        "Debug logic",
+        "JTAG port",
+        "Boot ROM",
+        "CPU",
+        "Peripherals",
+        "ICEPick debug module",
+        "Device capability registers",
+        "Clock source",
+        "PLL",
+        "Missing clock detection",
+        "PIE vector fetch error handler",
+        "NMI flags",
+        "Analog trims",
+        "Watchdog timer",
+        "Non-maskable interrupt (NMI) module",
+        "Dual-zone code security module (DCSM)",
+        "Flash memory",
+        "CLA code",
+        "INTOSC1"
+      ],
+      "root_causes": [
+        "Power-up glitches",
+        "Watchdog timer not serviced within user-specified time",
+        "Hardware errors detected by NMI module",
+        "CPU does not respond to NMI error within user-specified time",
+        "Vector fetch in safe copy or CRC function while interrupts should be disabled"
+      ],
+      "solutions": [
+        "Drive XRS pin low externally to provide correct reset duration",
+        "Service watchdog timer within specified time",
+        "Disable interrupts before calling safe copy or CRC functions",
+        "Use Code Composer Studio IDE to trigger debugger reset",
+        "Check RESC register bits to determine reset cause"
+      ]
+    },
+    "relationships": {
+      "indicator_to_error": {
+        "POR bit in RESC is set": [
+          "Power-up glitches"
+        ],
+        "XRSn bit in RESC is set": [
+          "Watchdog timer not serviced",
+          "Hardware errors in the system",
+          "Vector fetch occurs in a safe copy or CRC function"
+        ],
+        "WDRSn bit in RESC is set": [
+          "Watchdog timer not serviced"
+        ],
+        "NMIWDRSn bit in RESC is set": [
+          "Hardware errors in the system"
+        ],
+        "SCCRESETn bit in RESC is set": [
+          "Vector fetch occurs in a safe copy or CRC function",
+          "Security breaches"
+        ]
+      },
+      "error_to_cause": {
+        "Watchdog timer not serviced": [
+          "Watchdog timer not serviced within user-specified time"
+        ],
+        "Hardware errors in the system": [
+          "Hardware errors detected by NMI module",
+          "CPU does not respond to NMI error within user-specified time"
+        ],
+        "Vector fetch occurs in a safe copy or CRC function": [
+          "Vector fetch in safe copy or CRC function while interrupts should be disabled"
+        ],
+        "Security breaches": [
+          "Vector fetch in safe copy or CRC function while interrupts should be disabled"
+        ]
+      },
+      "cause_to_solution": {
+        "Power-up glitches": [
+          "Drive XRS pin low externally to provide correct reset duration"
+        ],
+        "Watchdog timer not serviced within user-specified time": [
+          "Service watchdog timer within specified time",
+          "Check RESC register bits to determine reset cause"
+        ],
+        "Hardware errors detected by NMI module": [
+          "Check RESC register bits to determine reset cause"
+        ],
+        "CPU does not respond to NMI error within user-specified time": [
+          "Check RESC register bits to determine reset cause"
+        ],
+        "Vector fetch in safe copy or CRC function while interrupts should be disabled": [
+          "Disable interrupts before calling safe copy or CRC functions",
+          "Use Code Composer Studio IDE to trigger debugger reset",
+          "Check RESC register bits to determine reset cause"
+        ]
+      }
+    }
+  },
+  {
+    "title": "3.5.2 Interrupt Architecture",
+    "entities": {
+      "error_conditions": [
+        "transmission error",
+        "conflicts over resources"
+      ],
+      "status_indicators": [
+        "flag registers",
+        "enable registers",
+        "status register bits"
+      ],
+      "components": [
+        "CPU",
+        "peripheral interrupt lines",
+        "INT13",
+        "INT14",
+        "CPU timers 1 and 2",
+        "enhanced Peripheral Interrupt Expansion module",
+        "ePIE",
+        "PIE",
+        "vector table",
+        "INPUTXBAR4",
+        "WDINT",
+        "LPMINT",
+        "WAKEINT",
+        "TINT0",
+        "NMI",
+        "INPUTXBAR13",
+        "INPUTXBAR5",
+        "INPUTXBAR6",
+        "INPUTXBAR14",
+        "GPIO0",
+        "GPIO1",
+        "TIMER0",
+        "TIMER1",
+        "TIMER2",
+        "RTOSINT",
+        "ERAD",
+        "XINT1 Control",
+        "XINT5 Control",
+        "XINT3 Control",
+        "XINT4 Control",
+        "XINT2 Control",
+        "Input X-BAR",
+        "LPM Logic",
+        "WD",
+        "NMI module"
+      ],
+      "root_causes": [
+        "asynchronous program flow",
+        "multiple events triggering same interrupt signal"
+      ],
+      "solutions": [
+        "reading the peripheral's status register",
+        "clear status register bits manually",
+        "implement and prioritize nested interrupts in software",
+        "disable interrupts during critical tasks"
+      ]
+    },
+    "relationships": {
+      "indicator_to_error": {
+        "status register bits": [
+          "transmission error"
+        ],
+        "flag registers": [
+          "conflicts over resources"
+        ],
+        "enable registers": [
+          "conflicts over resources"
+        ]
+      },
+      "error_to_cause": {
+        "transmission error": [
+          "multiple events triggering same interrupt signal"
+        ],
+        "conflicts over resources": [
+          "asynchronous program flow"
+        ]
+      },
+      "cause_to_solution": {
+        "multiple events triggering same interrupt signal": [
+          "reading the peripheral's status register",
+          "clear status register bits manually"
+        ],
+        "asynchronous program flow": [
+          "implement and prioritize nested interrupts in software",
+          "disable interrupts during critical tasks"
+        ]
+      }
+    }
+  },
+  {
+    "title": "3.5.3 Interrupt Entry Sequence",
+    "entities": {
+      "error_conditions": [
+        "No interrupt is both flagged and enabled",
+        "Software changes the state of the PIE while an interrupt is propagating"
+      ],
+      "status_indicators": [
+        "PIEIERx enable register bits",
+        "PIEIFRx flag register bits",
+        "PIEACK register bit",
+        "IER enable register",
+        "IFR flag register",
+        "ST1.INTM bit"
+      ],
+      "components": [
+        "PIE",
+        "CPU",
+        "PIE channels",
+        "PIE groups",
+        "PIE acknowledge register",
+        "CPU interrupt logic",
+        "Peripheral interrupts"
+      ],
+      "root_causes": [
+        "Software changes the state of the PIE while an interrupt is propagating"
+      ],
+      "solutions": [
+        "Use procedures for safely modifying the PIE configuration once interrupts have been enabled",
+        "Use SETC and CLRC instructions to control global interrupt mask",
+        "Use C2000Ware's DINT and EINT macros in C code"
+      ]
+    },
+    "relationships": {
+      "indicator_to_error": {
+        "PIEIERx enable register bits": [
+          "No interrupt is both flagged and enabled"
+        ],
+        "PIEIFRx flag register bits": [
+          "No interrupt is both flagged and enabled"
+        ],
+        "ST1.INTM bit": [
+          "Software changes the state of the PIE while an interrupt is propagating"
+        ]
+      },
+      "error_to_cause": {
+        "No interrupt is both flagged and enabled": [
+          "Software changes the state of the PIE while an interrupt is propagating"
+        ],
+        "Software changes the state of the PIE while an interrupt is propagating": [
+          "Software changes the state of the PIE while an interrupt is propagating"
+        ]
+      },
+      "cause_to_solution": {
+        "Software changes the state of the PIE while an interrupt is propagating": [
+          "Use procedures for safely modifying the PIE configuration once interrupts have been enabled",
+          "Use SETC and CLRC instructions to control global interrupt mask",
+          "Use C2000Ware's DINT and EINT macros in C code"
+        ]
+      }
+    }
+  },
+  {
+    "title": "3.5.4.2 Handling Interrupts",
+    "entities": {
+      "error_conditions": [
+        "Instructions in earlier stages are flushed",
+        "Wait states on the ISR or stack memories will add to the latency",
+        "Loops created using the C28x RPT instruction cannot be interrupted"
+      ],
+      "status_indicators": [
+        "PIEIFRx.y",
+        "PIEIERx.y is set",
+        "PIEACK.x is clear",
+        "PIEACK.x is set",
+        "IFR.x",
+        "IER.x is set",
+        "INTM is clear",
+        "IFR.x and IER.x are cleared",
+        "INTM is set",
+        "EALLOW is cleared",
+        "PIEIFRx.y is cleared",
+        "PIEIER and IER registers are cleared",
+        "INTM is set",
+        "ENPIE bit of the PIECTRL register",
+        "PIEIERx bit",
+        "CPU IER bit",
+        "PIEACK bit"
+      ],
+      "components": [
+        "PIE",
+        "CPU",
+        "peripheral",
+        "pipeline",
+        "stack",
+        "ISR",
+        "GPIO",
+        "Timer1",
+        "Timer2",
+        "PIE vector table",
+        "TMS320C28x C compiler",
+        "C28x RPT instruction"
+      ],
+      "root_causes": [
+        "No interrupts are enabled by default at power-up",
+        "PIEACK bit not cleared manually in user code"
+      ],
+      "solutions": [
+        "Disable interrupts globally (DINT or SETC INTM)",
+        "Enable the PIE by setting the ENPIE bit of the PIECTRL register",
+        "Write the ISR vector for each interrupt to the appropriate location in the PIE vector table",
+        "Set the appropriate PIEIERx bit for each interrupt",
+        "Set the CPU IER bit for any PIE group containing enabled interrupts",
+        "Enable the interrupt in the peripheral",
+        "Enable interrupts globally (EINT or CLRC INTM)",
+        "Save and restore the state of certain CPU registers",
+        "Clear the PIEACK bit for the interrupt group",
+        "Return using the IRET instruction",
+        "Use the __interrupt keyword for function definition"
+      ]
+    },
+    "relationships": {
+      "indicator_to_error": {
+        "PIEIER and IER registers are cleared": [
+          "No interrupts are enabled by default at power-up"
+        ],
+        "INTM is set": [
+          "No interrupts are enabled by default at power-up"
+        ],
+        "PIEACK bit": [
+          "PIEACK bit not cleared manually in user code"
+        ]
+      },
+      "error_to_cause": {
+        "Instructions in earlier stages are flushed": [
+          "Interrupt processing sequence"
+        ],
+        "Wait states on the ISR or stack memories will add to the latency": [
+          "Memory access delays"
+        ],
+        "Loops created using the C28x RPT instruction cannot be interrupted": [
+          "C28x RPT instruction design"
+        ],
+        "No interrupts are enabled by default at power-up": [
+          "No interrupts are enabled by default at power-up"
+        ],
+        "CPU will not receive further interrupts from group": [
+          "PIEACK bit not cleared manually in user code"
+        ]
+      },
+      "cause_to_solution": {
+        "No interrupts are enabled by default at power-up": [
+          "Disable interrupts globally (DINT or SETC INTM)",
+          "Enable the PIE by setting the ENPIE bit of the PIECTRL register",
+          "Write the ISR vector for each interrupt to the appropriate location in the PIE vector table",
+          "Set the appropriate PIEIERx bit for each interrupt",
+          "Set the CPU IER bit for any PIE group containing enabled interrupts",
+          "Enable the interrupt in the peripheral",
+          "Enable interrupts globally (EINT or CLRC INTM)"
+        ],
+        "PIEACK bit not cleared manually in user code": [
+          "Clear the PIEACK bit for the interrupt group"
+        ]
+      }
+    }
+  },
+  {
+    "title": "3.5.4.4 Nesting Interrupts",
+    "entities": {
+      "error_conditions": [
+        "spurious interrupt condition",
+        "race conditions",
+        "incoming interrupts to be lost",
+        "mismatch between the two vector tables",
+        "RAM_CORRECTABLE_ERR",
+        "FLASH_CORRECTABLE_ERR",
+        "RAM_ACC_VIOL",
+        "SYS_PLL_SLIP",
+        "FPU_OVFINT",
+        "FPU_UNFINT",
+        "CLA_LVF",
+        "CLA_LUF"
+      ],
+      "status_indicators": [
+        "CPU global interrupt mask",
+        "INTM",
+        "IER",
+        "PIEIERx registers",
+        "PIEIER bit",
+        "CPU IFR register",
+        "CPU IFR bit",
+        "PIEACK bit",
+        "PIEIFR bits",
+        "PIEVERRADDR register"
+      ],
+      "components": [
+        "CPU",
+        "PIE",
+        "ePIE",
+        "PWMs",
+        "PIE vector table",
+        "primary vector table",
+        "redundant vector table",
+        "boot ROM handler",
+        "peripheral registers",
+        "DMA controller",
+        "ADC",
+        "EPWM",
+        "ECAP",
+        "EQEP",
+        "CLB",
+        "SPI",
+        "I2C",
+        "SCI",
+        "DCAN",
+        "CLA",
+        "FPU",
+        "RAM",
+        "FLASH",
+        "PLL"
+      ],
+      "root_causes": [
+        "interrupt signal already propagating when PIEIER write completes",
+        "read/modify/write operation on PIEIFR bits",
+        "PIEVERRADDR register value has not been set"
+      ],
+      "solutions": [
+        "set the CPU global interrupt mask using DINT or SETC INTM",
+        "Disable interrupts globally (DINT or SETC INTM)",
+        "Clear the PIEIER bit for the interrupt",
+        "Wait 5 cycles to make sure that any propagating interrupt has reached the CPU IFR register",
+        "Clear the CPU IFR bit for the interrupt's PIE group",
+        "Clear the PIEACK bit for the interrupt's PIE group",
+        "Enable interrupts globally (EINT or CLRC INTM)",
+        "Modify the PIE vector table to map the PIEIFR bit's interrupt vector to an empty ISR",
+        "Disable the interrupt in the peripheral registers",
+        "Wait for the pending interrupt to be serviced by the empty ISR",
+        "Modify the PIE vector table to map the interrupt vector back to the original ISR",
+        "use software control of the IER and PIEIERx registers"
+      ]
+    },
+    "relationships": {
+      "indicator_to_error": {
+        "CPU global interrupt mask": [
+          "spurious interrupt condition",
+          "race conditions"
+        ],
+        "INTM": [
+          "spurious interrupt condition",
+          "race conditions"
+        ],
+        "PIEIERx registers": [
+          "spurious interrupt condition",
+          "race conditions"
+        ],
+        "PIEIER bit": [
+          "spurious interrupt condition",
+          "race conditions"
+        ],
+        "CPU IFR register": [
+          "spurious interrupt condition"
+        ],
+        "CPU IFR bit": [
+          "spurious interrupt condition"
+        ],
+        "PIEACK bit": [
+          "spurious interrupt condition"
+        ],
+        "PIEIFR bits": [
+          "incoming interrupts to be lost"
+        ],
+        "PIEVERRADDR register": [
+          "mismatch between the two vector tables"
+        ]
+      },
+      "error_to_cause": {
+        "spurious interrupt condition": [
+          "interrupt signal already propagating when PIEIER write completes"
+        ],
+        "race conditions": [
+          "interrupt signal already propagating when PIEIER write completes"
+        ],
+        "incoming interrupts to be lost": [
+          "read/modify/write operation on PIEIFR bits"
+        ],
+        "mismatch between the two vector tables": [
+          "PIEVERRADDR register value has not been set"
+        ]
+      },
+      "cause_to_solution": {
+        "interrupt signal already propagating when PIEIER write completes": [
+          "Disable interrupts globally (DINT or SETC INTM)",
+          "Clear the PIEIER bit for the interrupt",
+          "Wait 5 cycles to make sure that any propagating interrupt has reached the CPU IFR register",
+          "Clear the CPU IFR bit for the interrupt's PIE group",
+          "Clear the PIEACK bit for the interrupt's PIE group",
+          "Enable interrupts globally (EINT or CLRC INTM)"
+        ],
+        "read/modify/write operation on PIEIFR bits": [
+          "Disable interrupts globally (DINT or SETC INTM)",
+          "Modify the PIE vector table to map the PIEIFR bit's interrupt vector to an empty ISR",
+          "Disable the interrupt in the peripheral registers",
+          "Enable interrupts globally (EINT or CLRC INTM)",
+          "Wait for the pending interrupt to be serviced by the empty ISR",
+          "Modify the PIE vector table to map the interrupt vector back to the original ISR",
+          "Clear the PIEACK bit for the interrupt's PIE group"
+        ],
+        "PIEVERRADDR register value has not been set": [
+          "set the CPU global interrupt mask using DINT or SETC INTM"
+        ]
+      }
+    }
+  },
+  {
+    "title": "3.5.5.1 PIE Interrupt Priority",
+    "entities": {
+      "error_conditions": [
+        "FPU overflow interrupt",
+        "FPU underflow interrupt",
+        "RAM correctable error interrupt",
+        "Flash correctable error interrupt",
+        "RAM access violation interrupt",
+        "PLL slip interrupt",
+        "CLA overflow interrupt",
+        "CLA underflow interrupt",
+        "Illegal Instruction (ITRAP)"
+      ],
+      "status_indicators": [
+        "PIEIFRx.y is cleared",
+        "PIEACK for the group must be cleared"
+      ],
+      "components": [
+        "PIE",
+        "CPU",
+        "PIE group",
+        "Boot ROM",
+        "ADCA",
+        "ADCB",
+        "ADCC",
+        "EPWM",
+        "ECAP",
+        "EQEP",
+        "CLB",
+        "SDFM",
+        "SPI",
+        "DMA",
+        "I2C",
+        "SCI",
+        "CAN",
+        "CLA",
+        "FPU",
+        "PLL",
+        "RAM",
+        "Flash"
+      ],
+      "root_causes": [],
+      "solutions": [
+        "channel 1.1's ISR has to clear PIEACK for group 1"
+      ]
+    },
+    "relationships": {
+      "indicator_to_error": {
+        "PIEIFRx.y is cleared": [
+          "FPU overflow interrupt",
+          "FPU underflow interrupt",
+          "RAM correctable error interrupt",
+          "Flash correctable error interrupt",
+          "RAM access violation interrupt",
+          "PLL slip interrupt",
+          "CLA overflow interrupt",
+          "CLA underflow interrupt",
+          "Illegal Instruction (ITRAP)"
+        ],
+        "PIEACK for the group must be cleared": [
+          "FPU overflow interrupt",
+          "FPU underflow interrupt",
+          "RAM correctable error interrupt",
+          "Flash correctable error interrupt",
+          "RAM access violation interrupt",
+          "PLL slip interrupt",
+          "CLA overflow interrupt",
+          "CLA underflow interrupt",
+          "Illegal Instruction (ITRAP)"
+        ]
+      },
+      "error_to_cause": {
+        "FPU overflow interrupt": [],
+        "FPU underflow interrupt": [],
+        "RAM correctable error interrupt": [],
+        "Flash correctable error interrupt": [],
+        "RAM access violation interrupt": [],
+        "PLL slip interrupt": [],
+        "CLA overflow interrupt": [],
+        "CLA underflow interrupt": [],
+        "Illegal Instruction (ITRAP)": []
+      },
+      "cause_to_solution": {
+        "": [
+          "channel 1.1's ISR has to clear PIEACK for group 1"
+        ]
+      }
+    }
+  },
+  {
+    "title": "3.6.3.4 Software-Forced Error",
+    "entities": {
+      "error_conditions": [
+        "Missing clock detection",
+        "RAM uncorrectable ECC error",
+        "Flash uncorrectable ECC error",
+        "Single-bit parity error",
+        "Double-bit ECC data error",
+        "Single-bit ECC address error",
+        "OSCCLK source stops",
+        "NMI watchdog reset",
+        "Software-forced error"
+      ],
+      "status_indicators": [
+        "NMIFLG register status bit",
+        "NMIINT bit in NMIFLG register",
+        "SWERR bit in NMIFLGFRC register",
+        "SWERR flag"
+      ],
+      "components": [
+        "NMI module",
+        "NMI watchdog counter",
+        "NMIFLG register",
+        "NMIWDPRD register",
+        "NMIFLGCLR register",
+        "NMIFLGFRC register",
+        "PIE vector table",
+        "Boot ROM",
+        "CPU",
+        "CLA",
+        "DMA",
+        "PLL",
+        "OSCCLK",
+        "INTOSC1",
+        "SYSCLK",
+        "RAM",
+        "Flash",
+        "Missing clock detection logic"
+      ],
+      "root_causes": [
+        "OSCCLK source failure",
+        "NMI watchdog counter reaching NMIWDPRD value",
+        "Single-bit parity error in RAM read",
+        "Double-bit ECC data error in RAM read",
+        "Single-bit ECC address error in RAM read",
+        "Double-bit ECC data error in Flash read",
+        "Single-bit ECC address error in Flash read",
+        "Writing to SWERR bit"
+      ],
+      "solutions": [
+        "Clear flag bit using NMIFLGCLR register",
+        "Clear NMIINT bit in NMIFLG register",
+        "Write NMI handler vector to PIE vector table",
+        "PLL is bypassed and OSCCLK connected to INTOSC1",
+        "Use SWERR flag for self-test mode implementation"
+      ]
+    },
+    "relationships": {
+      "indicator_to_error": {
+        "NMIFLG register status bit": [
+          "Missing clock detection",
+          "RAM uncorrectable ECC error",
+          "Flash uncorrectable ECC error",
+          "Software-forced error"
+        ],
+        "NMIINT bit in NMIFLG register": [
+          "Missing clock detection",
+          "RAM uncorrectable ECC error",
+          "Flash uncorrectable ECC error",
+          "Software-forced error"
+        ],
+        "SWERR bit in NMIFLGFRC register": [
+          "Software-forced error"
+        ],
+        "SWERR flag": [
+          "Software-forced error"
+        ]
+      },
+      "error_to_cause": {
+        "Missing clock detection": [
+          "OSCCLK source failure"
+        ],
+        "RAM uncorrectable ECC error": [
+          "Single-bit parity error in RAM read",
+          "Double-bit ECC data error in RAM read",
+          "Single-bit ECC address error in RAM read"
+        ],
+        "Flash uncorrectable ECC error": [
+          "Double-bit ECC data error in Flash read",
+          "Single-bit ECC address error in Flash read"
+        ],
+        "Single-bit parity error": [
+          "Single-bit parity error in RAM read"
+        ],
+        "Double-bit ECC data error": [
+          "Double-bit ECC data error in RAM read",
+          "Double-bit ECC data error in Flash read"
+        ],
+        "Single-bit ECC address error": [
+          "Single-bit ECC address error in RAM read",
+          "Single-bit ECC address error in Flash read"
+        ],
+        "OSCCLK source stops": [
+          "OSCCLK source failure"
+        ],
+        "NMI watchdog reset": [
+          "NMI watchdog counter reaching NMIWDPRD value"
+        ],
+        "Software-forced error": [
+          "Writing to SWERR bit"
+        ]
+      },
+      "cause_to_solution": {
+        "OSCCLK source failure": [
+          "PLL is bypassed and OSCCLK connected to INTOSC1"
+        ],
+        "NMI watchdog counter reaching NMIWDPRD value": [
+          "Clear flag bit using NMIFLGCLR register"
+        ],
+        "Single-bit parity error in RAM read": [
+          "Clear flag bit using NMIFLGCLR register",
+          "Write NMI handler vector to PIE vector table"
+        ],
+        "Double-bit ECC data error in RAM read": [
+          "Clear flag bit using NMIFLGCLR register",
+          "Write NMI handler vector to PIE vector table"
+        ],
+        "Single-bit ECC address error in RAM read": [
+          "Clear flag bit using NMIFLGCLR register",
+          "Write NMI handler vector to PIE vector table"
+        ],
+        "Double-bit ECC data error in Flash read": [
+          "Clear flag bit using NMIFLGCLR register",
+          "Write NMI handler vector to PIE vector table"
+        ],
+        "Single-bit ECC address error in Flash read": [
+          "Clear flag bit using NMIFLGCLR register",
+          "Write NMI handler vector to PIE vector table"
+        ],
+        "Writing to SWERR bit": [
+          "Use SWERR flag for self-test mode implementation",
+          "Clear flag bit using NMIFLGCLR register"
+        ]
+      }
+    }
+  },
+  {
+    "title": "3.6.5 Error Pin",
+    "entities": {
+      "error_conditions": [
+        "Illegal instruction trap (ITRAP)",
+        "RAM fetch access violation",
+        "Missing clock condition",
+        "OSCCLK failure",
+        "Watchdog counter overflow",
+        "Bad key",
+        "Out of window",
+        "Clock failure"
+      ],
+      "status_indicators": [
+        "NMI_FLG bit is set",
+        "NMISHDFLG register bits",
+        "ERRORSTS signal goes low",
+        "MCDCR.MCLKSTS bit",
+        "MCDCR.MCDSTS flag",
+        "CLOCKFAIL signal goes high",
+        "WDRSn flag",
+        "PLLSTS[MCLKSTS] bit",
+        "X1CNT register value reaches 1023 (0x3FF)",
+        "WDCNTR overflow"
+      ],
+      "components": [
+        "CPU",
+        "PIE vector table",
+        "GPIO24",
+        "GPIO28",
+        "GPIO29",
+        "GPIO18",
+        "System PLL",
+        "INTOSC1",
+        "INTOSC2",
+        "XTAL",
+        "X1 pin",
+        "X2 pin",
+        "VCO",
+        "NMI watchdog timer",
+        "DMA controller",
+        "CLA",
+        "ADC",
+        "ePWM modules",
+        "CAN modules",
+        "SCI modules",
+        "SPI modules",
+        "Flash wrapper",
+        "Boot ROM",
+        "RAM",
+        "Missing clock detection (MCD) subsystem",
+        "CPU Timers 0/1/2",
+        "Watchdog timer module",
+        "WDKEY register",
+        "WDCNTR counter"
+      ],
+      "root_causes": [
+        "CPU tries to execute an illegal instruction",
+        "Invalid pointer dereference",
+        "Complete loss of OSCCLK",
+        "Crystal oscillator failure",
+        "External oscillator failure",
+        "Device failure",
+        "Incorrect watchdog key sequence",
+        "Writing incorrect value to WDCR[WDCHK] bits",
+        "Improper value written to WDKEY"
+      ],
+      "solutions": [
+        "Clear flags by CPU or power-on reset",
+        "Use external pull-down resistor for error-state assertion",
+        "Use external pull-up resistor to prevent error-state assertion",
+        "Follow crystal/resonator startup procedure",
+        "Clear X1 counter by writing 1 to X1CNT.CLR",
+        "Wait for X1 counter to reach 1023 (0x3FF)",
+        "Check MCLKSTS bit in MCDCR register",
+        "Clear missing clock status by writing 1 to MCDCR.MCLKCLR",
+        "Write proper sequence (0x55 + 0xAA) to WDKEY register",
+        "Reset the device",
+        "Clear WDRSn flag after reading",
+        "Use C2000Ware SysCtl:setClock() function for PLL configuration",
+        "Wait 300 NOP instructions after clock source change",
+        "Wait at least 60 CPU clock cycles after bypassing PLL",
+        "Set WDWCR register for minimum window check",
+        "Service watchdog when WDCNTR >= WDWCR"
+      ]
+    },
+    "relationships": {
+      "indicator_to_error": {
+        "NMI_FLG bit is set": [
+          "Illegal instruction trap (ITRAP)"
+        ],
+        "NMISHDFLG register bits": [
+          "RAM fetch access violation",
+          "Clock failure"
+        ],
+        "ERRORSTS signal goes low": [
+          "RAM fetch access violation",
+          "Clock failure"
+        ],
+        "MCDCR.MCLKSTS bit": [
+          "OSCCLK failure",
+          "Missing clock condition"
+        ],
+        "MCDCR.MCDSTS flag": [
+          "Missing clock condition"
+        ],
+        "CLOCKFAIL signal goes high": [
+          "Missing clock condition",
+          "Clock failure"
+        ],
+        "WDRSn flag": [
+          "Watchdog counter overflow"
+        ],
+        "PLLSTS[MCLKSTS] bit": [
+          "Missing clock condition"
+        ],
+        "X1CNT register value reaches 1023 (0x3FF)": [
+          "Crystal oscillator failure",
+          "External oscillator failure"
+        ],
+        "WDCNTR overflow": [
+          "Watchdog counter overflow"
+        ]
+      },
+      "error_to_cause": {
+        "Illegal instruction trap (ITRAP)": [
+          "CPU tries to execute an illegal instruction"
+        ],
+        "RAM fetch access violation": [
+          "Invalid pointer dereference"
+        ],
+        "Missing clock condition": [
+          "Complete loss of OSCCLK"
+        ],
+        "OSCCLK failure": [
+          "Crystal oscillator failure",
+          "External oscillator failure",
+          "Device failure"
+        ],
+        "Watchdog counter overflow": [
+          "Incorrect watchdog key sequence",
+          "Writing incorrect value to WDCR[WDCHK] bits"
+        ],
+        "Bad key": [
+          "Improper value written to WDKEY"
+        ],
+        "Out of window": [
+          "Incorrect watchdog key sequence"
+        ],
+        "Clock failure": [
+          "Complete loss of OSCCLK",
+          "Crystal oscillator failure",
+          "External oscillator failure"
+        ]
+      },
+      "cause_to_solution": {
+        "CPU tries to execute an illegal instruction": [
+          "Reset the device"
+        ],
+        "Invalid pointer dereference": [
+          "Clear flags by CPU or power-on reset"
+        ],
+        "Complete loss of OSCCLK": [
+          "Clear missing clock status by writing 1 to MCDCR.MCLKCLR",
+          "Follow crystal/resonator startup procedure"
+        ],
+        "Crystal oscillator failure": [
+          "Clear X1 counter by writing 1 to X1CNT.CLR",
+          "Wait for X1 counter to reach 1023 (0x3FF)",
+          "Check MCLKSTS bit in MCDCR register",
+          "Follow crystal/resonator startup procedure"
+        ],
+        "External oscillator failure": [
+          "Clear X1 counter by writing 1 to X1CNT.CLR",
+          "Wait for X1 counter to reach 1023 (0x3FF)",
+          "Check MCLKSTS bit in MCDCR register"
+        ],
+        "Device failure": [
+          "Reset the device"
+        ],
+        "Incorrect watchdog key sequence": [
+          "Write proper sequence (0x55 + 0xAA) to WDKEY register",
+          "Service watchdog when WDCNTR >= WDWCR",
+          "Set WDWCR register for minimum window check"
+        ],
+        "Writing incorrect value to WDCR[WDCHK] bits": [
+          "Clear WDRSn flag after reading",
+          "Reset the device"
+        ],
+        "Improper value written to WDKEY": [
+          "Write proper sequence (0x55 + 0xAA) to WDKEY register"
+        ]
+      }
+    }
+  },
+  {
+    "title": "3.9.3 Watchdog Reset or Watchdog Interrupt Mode",
+    "entities": {
+      "error_conditions": [
+        "Watchdog reset",
+        "Watchdog interrupt",
+        "Fetch protection violation",
+        "Write protection violation",
+        "Read protection violation",
+        "CLA fetch protection violation",
+        "Non-master access violation",
+        "Access violation",
+        "ITRAP",
+        "MSTOP"
+      ],
+      "status_indicators": [
+        "WDRST signal",
+        "WDINT signal",
+        "WDINTS bit",
+        "LPMCR.LPM = 0x0",
+        "LPMCR.LPM = 0x2",
+        "SYSPLL.LOCKS = 1",
+        "PLLCTL1.PLLCLKEN = 1",
+        "CLKSRCCTL1.WDHALTI = 1",
+        "CLKSRCCTL1.WDHALTI = 0",
+        "XTALCR.OSCOFF bit",
+        "MSEL_LSx bit field",
+        "CLAPGM_LSx bit field",
+        "FETCHPROTx bit",
+        "CPUWRPROTx bit"
+      ],
+      "components": [
+        "Watchdog",
+        "SCSR register",
+        "PIE",
+        "CPU",
+        "DMA controller",
+        "CLA",
+        "INTOSC1",
+        "INTOSC2",
+        "XTAL",
+        "PLL",
+        "SYSPLL",
+        "Flash module",
+        "Memory Controller Module",
+        "M0 RAM",
+        "M1 RAM",
+        "LSx RAM",
+        "GSx RAM",
+        "MSGRAM",
+        "GPIO",
+        "WDCLK",
+        "XRS pin"
+      ],
+      "root_causes": [
+        "Watchdog counter reaches maximum value",
+        "Invalid pointer dereference",
+        "Changing watchdog configuration while WDINT is active",
+        "Debug reset issued while WDINT is active",
+        "Flash program or erase operation ongoing",
+        "Wake event already asserted",
+        "System PLL not locked or not connected to system clock",
+        "Access to protected memory",
+        "Unauthorized master access"
+      ],
+      "solutions": [
+        "Reset the device",
+        "Check WDINTS bit in SCSR register",
+        "Enable WAKEINT interrupt in PIE",
+        "Set LPMCR.LPM to appropriate value",
+        "Execute IDLE instruction",
+        "Drive GPIO low for minimum 5us",
+        "Wait 16 \u03bcs plus 1024 OSCLK cycles",
+        "Switch SYSCLK source from PLLCLK to OSCCLKLK",
+        "Disable peripheral clocks through PCLKCRx registers",
+        "Configure GPIOLPMSEL0 and GPIOLPMSEL1",
+        "Power off XTAL prior to entering HALT",
+        "Execute function from RAM when powering down Flash",
+        "Optimize PSLEEP and RWAIT values",
+        "Configure Flash fallback mode to active state",
+        "Check memory allocation",
+        "Inspect register values",
+        "Configure access protection registers",
+        "Lock configuration using GSxCOMMIT register"
+      ]
+    },
+    "relationships": {
+      "indicator_to_error": {
+        "WDRST signal": [
+          "Watchdog reset"
+        ],
+        "WDINT signal": [
+          "Watchdog interrupt"
+        ],
+        "WDINTS bit": [
+          "Watchdog interrupt"
+        ],
+        "FETCHPROTx bit": [
+          "Fetch protection violation"
+        ],
+        "CPUWRPROTx bit": [
+          "Write protection violation"
+        ]
+      },
+      "error_to_cause": {
+        "Watchdog reset": [
+          "Watchdog counter reaches maximum value"
+        ],
+        "Watchdog interrupt": [
+          "Watchdog counter reaches maximum value"
+        ],
+        "Fetch protection violation": [
+          "Access to protected memory"
+        ],
+        "Write protection violation": [
+          "Access to protected memory"
+        ],
+        "Read protection violation": [
+          "Access to protected memory"
+        ],
+        "CLA fetch protection violation": [
+          "Unauthorized master access"
+        ],
+        "Non-master access violation": [
+          "Unauthorized master access"
+        ],
+        "Access violation": [
+          "Access to protected memory",
+          "Unauthorized master access"
+        ],
+        "ITRAP": [
+          "Fetch protection violation"
+        ],
+        "MSTOP": [
+          "CLA fetch protection violation"
+        ]
+      },
+      "cause_to_solution": {
+        "Watchdog counter reaches maximum value": [
+          "Reset the device",
+          "Check WDINTS bit in SCSR register"
+        ],
+        "Changing watchdog configuration while WDINT is active": [
+          "Check WDINTS bit in SCSR register"
+        ],
+        "Debug reset issued while WDINT is active": [
+          "Check WDINTS bit in SCSR register"
+        ],
+        "Flash program or erase operation ongoing": [
+          "Execute function from RAM when powering down Flash"
+        ],
+        "Wake event already asserted": [
+          "Drive GPIO low for minimum 5us",
+          "Wait 16 \u03bcs plus 1024 OSCLK cycles"
+        ],
+        "System PLL not locked or not connected to system clock": [
+          "Switch SYSCLK source from PLLCLK to OSCCLKLK",
+          "Optimize PSLEEP and RWAIT values"
+        ],
+        "Access to protected memory": [
+          "Configure access protection registers",
+          "Check memory allocation",
+          "Inspect register values"
+        ],
+        "Unauthorized master access": [
+          "Configure access protection registers",
+          "Lock configuration using GSxCOMMIT register"
+        ],
+        "Invalid pointer dereference": [
+          "Check memory allocation",
+          "Inspect register values"
+        ]
+      }
+    }
+  },
+  {
+    "title": "3.11.1.7 Memory Error Detection, Correction and Error Handling",
+    "entities": {
+      "error_conditions": [
+        "CLA write protection violation",
+        "CLA read protection violation",
+        "DMA write protection violation",
+        "non-master access violation",
+        "non-master write protection violation",
+        "master DMA write protection violation",
+        "memory error",
+        "single error",
+        "double error"
+      ],
+      "status_indicators": [
+        "access violation flag register",
+        "DMAWRPROTx bit",
+        "DMA access violation flag register",
+        "interrupt enable register"
+      ],
+      "components": [
+        "CLA",
+        "CPU",
+        "DMA",
+        "local shared RAM",
+        "LSx RAM",
+        "GSx memory",
+        "M0 memory",
+        "M1 memory",
+        "memory controller module",
+        "dedicated RAMs",
+        "shared RAMs"
+      ],
+      "root_causes": [
+        "data write access from CLA to dedicated CPU RAM",
+        "data write access from CLA to CLA program RAM",
+        "data read access from CLA to dedicated CPU RAM",
+        "data read access from CLA to CLA program RAM",
+        "write access by DMA to protected memory",
+        "write access to GSx memory by non-master DMA",
+        "write access to dedicated or shared memory by master DMA with DMAWRPROTx set to 1"
+      ],
+      "solutions": [
+        "write gets ignored",
+        "flag gets set in access violation flag register",
+        "memory address gets latched in CLA write access violation address register",
+        "memory address gets latched in CLA read access violation address register",
+        "memory address gets latched in DMA fetch access violation address register",
+        "access violation interrupt is generated to CPU if enabled",
+        "access violation interrupt is generated to master CPU if enabled",
+        "use ECC protection for dedicated RAMs",
+        "use parity protection for shared RAMs"
+      ]
+    },
+    "relationships": {
+      "indicator_to_error": {
+        "access violation flag register": [
+          "CLA write protection violation",
+          "CLA read protection violation"
+        ],
+        "DMAWRPROTx bit": [
+          "DMA write protection violation"
+        ],
+        "DMA access violation flag register": [
+          "DMA write protection violation",
+          "non-master write protection violation",
+          "master DMA write protection violation"
+        ],
+        "interrupt enable register": [
+          "CLA write protection violation",
+          "CLA read protection violation"
+        ]
+      },
+      "error_to_cause": {
+        "CLA write protection violation": [
+          "data write access from CLA to dedicated CPU RAM",
+          "data write access from CLA to CLA program RAM"
+        ],
+        "CLA read protection violation": [
+          "data read access from CLA to dedicated CPU RAM",
+          "data read access from CLA to CLA program RAM"
+        ],
+        "DMA write protection violation": [
+          "write access by DMA to protected memory"
+        ],
+        "non-master write protection violation": [
+          "write access to GSx memory by non-master DMA"
+        ],
+        "master DMA write protection violation": [
+          "write access to dedicated or shared memory by master DMA with DMAWRPROTx set to 1"
+        ],
+        "non-master access violation": [
+          "data write access from CLA to dedicated CPU RAM",
+          "data write access from CLA to CLA program RAM",
+          "data read access from CLA to dedicated CPU RAM",
+          "data read access from CLA to CLA program RAM"
+        ]
+      },
+      "cause_to_solution": {
+        "data write access from CLA to dedicated CPU RAM": [
+          "write gets ignored",
+          "flag gets set in access violation flag register",
+          "memory address gets latched in CLA write access violation address register",
+          "access violation interrupt is generated to CPU if enabled"
+        ],
+        "data write access from CLA to CLA program RAM": [
+          "write gets ignored",
+          "flag gets set in access violation flag register",
+          "memory address gets latched in CLA write access violation address register",
+          "access violation interrupt is generated to CPU if enabled"
+        ],
+        "data read access from CLA to dedicated CPU RAM": [
+          "flag gets set in access violation flag register",
+          "memory address gets latched in CLA read access violation address register",
+          "access violation interrupt is generated to master CPU if enabled"
+        ],
+        "data read access from CLA to CLA program RAM": [
+          "flag gets set in access violation flag register",
+          "memory address gets latched in CLA read access violation address register",
+          "access violation interrupt is generated to master CPU if enabled"
+        ],
+        "write access by DMA to protected memory": [
+          "memory address gets latched in DMA fetch access violation address register"
+        ],
+        "write access to GSx memory by non-master DMA": [
+          "memory address gets latched in DMA fetch access violation address register"
+        ],
+        "write access to dedicated or shared memory by master DMA with DMAWRPROTx set to 1": [
+          "memory address gets latched in DMA fetch access violation address register"
+        ]
+      }
+    }
+  },
+  {
+    "title": "3.11.1.7.2 Error Handling",
+    "entities": {
+      "error_conditions": [
+        "Parity errors",
+        "Single-bit ECC errors",
+        "Double-bit ECC errors",
+        "Address ECC errors",
+        "Correctable errors",
+        "Uncorrectable errors",
+        "Single-bit error for Parity RAMs",
+        "Double bit Error for ECC RAMs",
+        "Address error",
+        "ITRAP"
+      ],
+      "status_indicators": [
+        "correctable error count register",
+        "correctable error threshold register",
+        "correctable interrupt enable register",
+        "flag gets set in a status register",
+        "CPU/CPU.DMA/CPU.CLA1 CPU/DMA/CLA Read Error Address Register",
+        "CPU/CPU.DMA CPU/DMA Read Error Address Register",
+        "CPU/CPU.DMA/CPU.CLA1 CPU/DMA/CLA Read Address Error Register",
+        "single error counter"
+      ],
+      "components": [
+        "memory controller module",
+        "CPU",
+        "DMA",
+        "CLA1",
+        "Parity RAMs",
+        "ECC RAMs",
+        "CPU pipeline"
+      ],
+      "root_causes": [
+        "Single-bit error at memory address",
+        "Double-bit error due to another single-bit error at the same memory address",
+        "Data read from memory error",
+        "Address error during memory access",
+        "Garbage instructions entering CPU pipeline"
+      ],
+      "solutions": [
+        "Error gets corrected by the memory controller module",
+        "Correct data is written back into the memory",
+        "Configure the correctable error threshold register based on system requirements",
+        "Handle error situations appropriately in software using status and interrupt indications",
+        "Use interrupt when error counter reaches user programmable threshold",
+        "Correctable and uncorrectable errors are masked during debug accesses"
+      ]
+    },
+    "relationships": {
+      "indicator_to_error": {
+        "correctable error count register": [
+          "Single-bit ECC errors",
+          "Correctable errors"
+        ],
+        "correctable error threshold register": [
+          "Single-bit ECC errors",
+          "Correctable errors"
+        ],
+        "correctable interrupt enable register": [
+          "Single-bit ECC errors",
+          "Correctable errors"
+        ],
+        "flag gets set in a status register": [
+          "Uncorrectable errors",
+          "Correctable errors"
+        ],
+        "CPU/CPU.DMA/CPU.CLA1 CPU/DMA/CLA Read Error Address Register": [
+          "Uncorrectable errors",
+          "Single-bit error for Parity RAMs",
+          "Double bit Error for ECC RAMs"
+        ],
+        "CPU/CPU.DMA CPU/DMA Read Error Address Register": [
+          "Single-bit ECC errors"
+        ],
+        "CPU/CPU.DMA/CPU.CLA1 CPU/DMA/CLA Read Address Error Register": [
+          "Address error"
+        ],
+        "single error counter": [
+          "Single-bit ECC errors"
+        ]
+      },
+      "error_to_cause": {
+        "Parity errors": [
+          "Data read from memory error"
+        ],
+        "Single-bit ECC errors": [
+          "Single-bit error at memory address",
+          "Data read from memory error"
+        ],
+        "Double-bit ECC errors": [
+          "Double-bit error due to another single-bit error at the same memory address",
+          "Data read from memory error"
+        ],
+        "Address ECC errors": [
+          "Address error during memory access"
+        ],
+        "Correctable errors": [
+          "Single-bit error at memory address"
+        ],
+        "Uncorrectable errors": [
+          "Double-bit error due to another single-bit error at the same memory address",
+          "Data read from memory error",
+          "Address error during memory access"
+        ],
+        "Single-bit error for Parity RAMs": [
+          "Data read from memory error"
+        ],
+        "Double bit Error for ECC RAMs": [
+          "Data read from memory error"
+        ],
+        "Address error": [
+          "Address error during memory access"
+        ],
+        "ITRAP": [
+          "Garbage instructions entering CPU pipeline"
+        ]
+      },
+      "cause_to_solution": {
+        "Single-bit error at memory address": [
+          "Error gets corrected by the memory controller module",
+          "Correct data is written back into the memory"
+        ],
+        "Double-bit error due to another single-bit error at the same memory address": [
+          "Correct data is written back into the memory",
+          "Handle error situations appropriately in software using status and interrupt indications"
+        ],
+        "Data read from memory error": [
+          "Error gets corrected by the memory controller module",
+          "Handle error situations appropriately in software using status and interrupt indications",
+          "Use interrupt when error counter reaches user programmable threshold"
+        ],
+        "Address error during memory access": [
+          "Handle error situations appropriately in software using status and interrupt indications"
+        ],
+        "Garbage instructions entering CPU pipeline": [
+          "Correctable and uncorrectable errors are masked during debug accesses"
+        ]
+      }
+    }
+  },
+  {
+    "title": "3.11.1.8 Application Test Hooks for Error Detection and Correction",
+    "entities": {
+      "error_conditions": [
+        "ECC error",
+        "Parity error",
+        "Single error",
+        "Double error",
+        "Memory read/write does not happen correctly",
+        "Initialization does not happen correctly"
+      ],
+      "status_indicators": [
+        "INIT bit",
+        "INITDONE bit",
+        "RAMINITDONE bit",
+        "ECC Code for lower 16 bits of data",
+        "ECC Code for upper 16 bits of data",
+        "ECC Code for address",
+        "Parity for lower 16 bits of data",
+        "Parity for upper 16 bits of data",
+        "Parity for address"
+      ],
+      "components": [
+        "ECC/Parity bits",
+        "RAM",
+        "Flash memory",
+        "OTP memory",
+        "Flash banks",
+        "FMC",
+        "Flash pump",
+        "FSM",
+        "DCSM",
+        "CPU core",
+        "RAMTEST mode",
+        "Flash prefetch/cache",
+        "Code-prefetch mechanism",
+        "Data cache"
+      ],
+      "root_causes": [
+        "Read from uninitialized RAM locations",
+        "Fetch from uninitialized RAM locations",
+        "Memory accessed before RAMINITDONE is set",
+        "Invalid ECC/Parity bits",
+        "Corrupted data bits"
+      ],
+      "solutions": [
+        "Set INIT bit to 1 for specific RAM block",
+        "Poll INITDONE bit for RAM block to be set",
+        "Initialize RAM block with 0x0 data and respective ECC/Parity bits",
+        "Use 32-bit access only in test mode",
+        "Choose different test mode to access ECC/Parity bits",
+        "Wait for RAMINITDONE to be set before accessing memory",
+        "Use RAM_INIT feature for each memory block",
+        "Inject ECC/Parity error for testing",
+        "Configure wait states and operating mode of Flash"
+      ]
+    },
+    "relationships": {
+      "indicator_to_error": {
+        "INIT bit": [
+          "Memory read/write does not happen correctly",
+          "Initialization does not happen correctly"
+        ],
+        "INITDONE bit": [
+          "Memory read/write does not happen correctly",
+          "Initialization does not happen correctly"
+        ],
+        "RAMINITDONE bit": [
+          "Memory read/write does not happen correctly",
+          "Initialization does not happen correctly"
+        ],
+        "ECC Code for lower 16 bits of data": [
+          "ECC error",
+          "Single error",
+          "Double error"
+        ],
+        "ECC Code for upper 16 bits of data": [
+          "ECC error",
+          "Single error",
+          "Double error"
+        ],
+        "ECC Code for address": [
+          "ECC error",
+          "Single error",
+          "Double error"
+        ],
+        "Parity for lower 16 bits of data": [
+          "Parity error"
+        ],
+        "Parity for upper 16 bits of data": [
+          "Parity error"
+        ],
+        "Parity for address": [
+          "Parity error"
+        ]
+      },
+      "error_to_cause": {
+        "ECC error": [
+          "Read from uninitialized RAM locations",
+          "Fetch from uninitialized RAM locations",
+          "Invalid ECC/Parity bits",
+          "Corrupted data bits"
+        ],
+        "Parity error": [
+          "Read from uninitialized RAM locations",
+          "Fetch from uninitialized RAM locations",
+          "Invalid ECC/Parity bits",
+          "Corrupted data bits"
+        ],
+        "Single error": [
+          "Invalid ECC/Parity bits",
+          "Corrupted data bits"
+        ],
+        "Double error": [
+          "Invalid ECC/Parity bits",
+          "Corrupted data bits"
+        ],
+        "Memory read/write does not happen correctly": [
+          "Memory accessed before RAMINITDONE is set"
+        ],
+        "Initialization does not happen correctly": [
+          "Memory accessed before RAMINITDONE is set"
+        ]
+      },
+      "cause_to_solution": {
+        "Read from uninitialized RAM locations": [
+          "Set INIT bit to 1 for specific RAM block",
+          "Initialize RAM block with 0x0 data and respective ECC/Parity bits",
+          "Use RAM_INIT feature for each memory block"
+        ],
+        "Fetch from uninitialized RAM locations": [
+          "Set INIT bit to 1 for specific RAM block",
+          "Initialize RAM block with 0x0 data and respective ECC/Parity bits",
+          "Use RAM_INIT feature for each memory block"
+        ],
+        "Memory accessed before RAMINITDONE is set": [
+          "Wait for RAMINITDONE to be set before accessing memory",
+          "Poll INITDONE bit for RAM block to be set"
+        ],
+        "Invalid ECC/Parity bits": [
+          "Use 32-bit access only in test mode",
+          "Choose different test mode to access ECC/Parity bits",
+          "Inject ECC/Parity error for testing"
+        ],
+        "Corrupted data bits": [
+          "Use 32-bit access only in test mode",
+          "Choose different test mode to access ECC/Parity bits",
+          "Inject ECC/Parity error for testing"
+        ]
+      }
+    }
+  },
+  {
+    "title": "3.12.3 Default Flash Configuration",
+    "entities": {
+      "error_conditions": [
+        "ECC error",
+        "Invalid pointer dereference",
+        "PC discontinuity"
+      ],
+      "status_indicators": [
+        "BNKPWR bit field in the FBFALLBAC register",
+        "PMPPWR bit field in the FPAC1 register",
+        "BAGP field in the FBAC register",
+        "PAGP bit field in the FPAC2 register",
+        "PREFETCH_EN bit in the FRD_INTF_CTRL register",
+        "DATA_CACHE_EN bit in the FRD_INTF_CTRL register",
+        "RWAIT bit-field in the FRDCNTL register",
+        "PSLEEP bit field in the FPAC1 register"
+      ],
+      "components": [
+        "Flash banks",
+        "Flash module",
+        "Shared pump",
+        "ECC",
+        "FMC",
+        "Code-prefetch mechanism",
+        "Data cache",
+        "Bank0",
+        "Bank1",
+        "OTP",
+        "USER OTP",
+        "TI-OTP",
+        "Flash Module Controller",
+        "CPU",
+        "Flash state machine",
+        "FSM",
+        "Charge pump",
+        "Prefetch buffer",
+        "Flash wrapper",
+        "Dual Code Security Module",
+        "DCSM"
+      ],
+      "root_causes": [
+        "Flash banks are in sleep power mode at power-up",
+        "Wait-states are set to maximum at power-up",
+        "Prefetch mechanism tries to fetch from outside the bank",
+        "PC discontinuity caused by executing branch, BANZ, call, or loop instructions",
+        "Security zone is in locked state"
+      ],
+      "solutions": [
+        "Initialize wait-states using the FRDCNTL register",
+        "Configure cache/prefetch features using the FRD_INTF_CTRL register",
+        "Execute Flash configuration software only from RAM memory",
+        "Turn off pre-fetch and data caching before initializing wait-states",
+        "Use Flash API library for program, erase, and verify operations",
+        "Execute Flash API from RAM in single-bank devices",
+        "Execute Flash API from one bank to perform operations on another bank in dual-bank devices",
+        "Follow typical flow: Erase \u2192 Program \u2192 Verify",
+        "Use Fapi_issueAsyncCommandWithAddress() for erase operations",
+        "Use Fapi_doBlankCheck() to determine if Flash bank is blank",
+        "Configure RWAIT using formula: RWAIT = ceiling[(SYSCLK/FCLK) - 1]"
+      ]
+    },
+    "relationships": {
+      "indicator_to_error": {
+        "BNKPWR bit field in the FBFALLBAC register": [
+          "ECC error"
+        ],
+        "PMPPWR bit field in the FPAC1 register": [
+          "ECC error"
+        ],
+        "PREFETCH_EN bit in the FRD_INTF_CTRL register": [
+          "ECC error"
+        ],
+        "DATA_CACHE_EN bit in the FRD_INTF_CTRL register": [
+          "Invalid pointer dereference"
+        ],
+        "RWAIT bit-field in the FRDCNTL register": [
+          "PC discontinuity"
+        ]
+      },
+      "error_to_cause": {
+        "ECC error": [
+          "Prefetch mechanism tries to fetch from outside the bank",
+          "Flash banks are in sleep power mode at power-up"
+        ],
+        "Invalid pointer dereference": [
+          "Security zone is in locked state"
+        ],
+        "PC discontinuity": [
+          "PC discontinuity caused by executing branch, BANZ, call, or loop instructions",
+          "Wait-states are set to maximum at power-up"
+        ]
+      },
+      "cause_to_solution": {
+        "Flash banks are in sleep power mode at power-up": [
+          "Initialize wait-states using the FRDCNTL register",
+          "Configure cache/prefetch features using the FRD_INTF_CTRL register"
+        ],
+        "Wait-states are set to maximum at power-up": [
+          "Configure RWAIT using formula: RWAIT = ceiling[(SYSCLK/FCLK) - 1]",
+          "Initialize wait-states using the FRDCNTL register"
+        ],
+        "Prefetch mechanism tries to fetch from outside the bank": [
+          "Turn off pre-fetch and data caching before initializing wait-states",
+          "Execute Flash API from one bank to perform operations on another bank in dual-bank devices"
+        ],
+        "PC discontinuity caused by executing branch, BANZ, call, or loop instructions": [
+          "Execute Flash configuration software only from RAM memory",
+          "Use Flash API library for program, erase, and verify operations"
+        ],
+        "Security zone is in locked state": [
+          "Use Fapi_issueAsyncCommandWithAddress() for erase operations",
+          "Follow typical flow: Erase \u2192 Program \u2192 Verify"
+        ]
+      }
+    }
+  },
+  {
+    "title": "3.12.10 Error Correction Code (ECC) Protection",
+    "entities": {
+      "error_conditions": [
+        "Single-bit data error",
+        "Double-bit data error",
+        "Address error",
+        "Uncorrectable error",
+        "Memory faults"
+      ],
+      "status_indicators": [
+        "ECC_ENABLE register",
+        "Single-bit Error position",
+        "8-bit output decoded",
+        "ECC check bits"
+      ],
+      "components": [
+        "FSM",
+        "Flash API",
+        "USER OTP",
+        "Flash",
+        "ECC",
+        "FMC",
+        "SECDED module",
+        "CPU",
+        "Flash banks",
+        "ECC memory space",
+        "Flash Plugin",
+        "Code Composer Studio IDE",
+        "DCSM OTP",
+        "DCSM Zx-LINKPOINTER1",
+        "DCSM Zx-LINKPOINTER2",
+        "DCSM Zx-LINKPOINTER3",
+        "DCSM Zx-PSWDLOCK"
+      ],
+      "root_causes": [
+        "Single-bit data error in address field",
+        "Double-bit data error",
+        "Address error",
+        "Memory faults"
+      ],
+      "solutions": [
+        "Use Fapi_issueProgrammingCommand()",
+        "Use Fapi_doVerify() to verify programmed contents",
+        "Perform CRC check during power-up and runtime",
+        "Use AutoEccGeneration option in Plugin/API",
+        "Use F021 Flash API to calculate and program ECC data",
+        "Use linker-supported ECC generation option",
+        "Program ECC check bits along with Flash",
+        "Align main array Flash programming to 64-bit address boundaries",
+        "Align DCSM OTP programming to 128-bit address boundaries",
+        "Enable ECC logic for error detection and correction"
+      ]
+    },
+    "relationships": {}
+  }
+]

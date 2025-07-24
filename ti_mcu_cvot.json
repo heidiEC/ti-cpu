@@ -1,0 +1,4434 @@
+{
+  "cvot_metadata": {
+    "system": "Texas Instruments C2000 Microcontroller",
+    "version": "1.0",
+    "created_date": "2025-07-24",
+    "description": "Causal Vector Orchestration Template for Texas Instruments C2000 Microcontroller troubleshooting.",
+    "safety_level": "N/A (General Purpose MCU)"
+  },
+  "nodes": {
+    "error_conditions": [
+      {
+        "id": "N0001",
+        "type": "error_conditions",
+        "description": "Bus fault"
+      },
+      {
+        "id": "N0002",
+        "type": "error_conditions",
+        "description": "Stack overflow"
+      },
+      {
+        "id": "N0003",
+        "type": "error_conditions",
+        "description": "Brownout reset"
+      },
+      {
+        "id": "N0004",
+        "type": "error_conditions",
+        "description": "Missing clock detection"
+      },
+      {
+        "id": "N0005",
+        "type": "error_conditions",
+        "description": "Watchdog reset"
+      },
+      {
+        "id": "N0006",
+        "type": "error_conditions",
+        "description": "NMI watchdog reset"
+      },
+      {
+        "id": "N0007",
+        "type": "error_conditions",
+        "description": "Power-on reset"
+      },
+      {
+        "id": "N0008",
+        "type": "error_conditions",
+        "description": "External reset"
+      },
+      {
+        "id": "N0050",
+        "type": "error_conditions",
+        "description": "Watchdog timer not serviced"
+      },
+      {
+        "id": "N0051",
+        "type": "error_conditions",
+        "description": "Hardware errors in the system"
+      },
+      {
+        "id": "N0052",
+        "type": "error_conditions",
+        "description": "Vector fetch occurs in a safe copy or CRC function"
+      },
+      {
+        "id": "N0053",
+        "type": "error_conditions",
+        "description": "Security breaches"
+      },
+      {
+        "id": "N0088",
+        "type": "error_conditions",
+        "description": "transmission error"
+      },
+      {
+        "id": "N0089",
+        "type": "error_conditions",
+        "description": "conflicts over resources"
+      },
+      {
+        "id": "N0133",
+        "type": "error_conditions",
+        "description": "No interrupt is both flagged and enabled"
+      },
+      {
+        "id": "N0134",
+        "type": "error_conditions",
+        "description": "Software changes the state of the PIE while an interrupt is propagating"
+      },
+      {
+        "id": "N0150",
+        "type": "error_conditions",
+        "description": "Instructions in earlier stages are flushed"
+      },
+      {
+        "id": "N0151",
+        "type": "error_conditions",
+        "description": "Wait states on the ISR or stack memories will add to the latency"
+      },
+      {
+        "id": "N0152",
+        "type": "error_conditions",
+        "description": "Loops created using the C28x RPT instruction cannot be interrupted"
+      },
+      {
+        "id": "N0190",
+        "type": "error_conditions",
+        "description": "spurious interrupt condition"
+      },
+      {
+        "id": "N0191",
+        "type": "error_conditions",
+        "description": "race conditions"
+      },
+      {
+        "id": "N0192",
+        "type": "error_conditions",
+        "description": "incoming interrupts to be lost"
+      },
+      {
+        "id": "N0193",
+        "type": "error_conditions",
+        "description": "mismatch between the two vector tables"
+      },
+      {
+        "id": "N0194",
+        "type": "error_conditions",
+        "description": "RAM_CORRECTABLE_ERR"
+      },
+      {
+        "id": "N0195",
+        "type": "error_conditions",
+        "description": "FLASH_CORRECTABLE_ERR"
+      },
+      {
+        "id": "N0196",
+        "type": "error_conditions",
+        "description": "RAM_ACC_VIOL"
+      },
+      {
+        "id": "N0197",
+        "type": "error_conditions",
+        "description": "SYS_PLL_SLIP"
+      },
+      {
+        "id": "N0198",
+        "type": "error_conditions",
+        "description": "FPU_OVFINT"
+      },
+      {
+        "id": "N0199",
+        "type": "error_conditions",
+        "description": "FPU_UNFINT"
+      },
+      {
+        "id": "N0200",
+        "type": "error_conditions",
+        "description": "CLA_LVF"
+      },
+      {
+        "id": "N0201",
+        "type": "error_conditions",
+        "description": "CLA_LUF"
+      },
+      {
+        "id": "N0240",
+        "type": "error_conditions",
+        "description": "FPU overflow interrupt"
+      },
+      {
+        "id": "N0241",
+        "type": "error_conditions",
+        "description": "FPU underflow interrupt"
+      },
+      {
+        "id": "N0242",
+        "type": "error_conditions",
+        "description": "RAM correctable error interrupt"
+      },
+      {
+        "id": "N0243",
+        "type": "error_conditions",
+        "description": "Flash correctable error interrupt"
+      },
+      {
+        "id": "N0244",
+        "type": "error_conditions",
+        "description": "RAM access violation interrupt"
+      },
+      {
+        "id": "N0245",
+        "type": "error_conditions",
+        "description": "PLL slip interrupt"
+      },
+      {
+        "id": "N0246",
+        "type": "error_conditions",
+        "description": "CLA overflow interrupt"
+      },
+      {
+        "id": "N0247",
+        "type": "error_conditions",
+        "description": "CLA underflow interrupt"
+      },
+      {
+        "id": "N0248",
+        "type": "error_conditions",
+        "description": "Illegal Instruction (ITRAP)"
+      },
+      {
+        "id": "N0258",
+        "type": "error_conditions",
+        "description": "RAM uncorrectable ECC error"
+      },
+      {
+        "id": "N0259",
+        "type": "error_conditions",
+        "description": "Flash uncorrectable ECC error"
+      },
+      {
+        "id": "N0260",
+        "type": "error_conditions",
+        "description": "Single-bit parity error"
+      },
+      {
+        "id": "N0261",
+        "type": "error_conditions",
+        "description": "Double-bit ECC data error"
+      },
+      {
+        "id": "N0262",
+        "type": "error_conditions",
+        "description": "Single-bit ECC address error"
+      },
+      {
+        "id": "N0263",
+        "type": "error_conditions",
+        "description": "OSCCLK source stops"
+      },
+      {
+        "id": "N0264",
+        "type": "error_conditions",
+        "description": "Software-forced error"
+      },
+      {
+        "id": "N0290",
+        "type": "error_conditions",
+        "description": "Illegal instruction trap (ITRAP)"
+      },
+      {
+        "id": "N0291",
+        "type": "error_conditions",
+        "description": "RAM fetch access violation"
+      },
+      {
+        "id": "N0292",
+        "type": "error_conditions",
+        "description": "Missing clock condition"
+      },
+      {
+        "id": "N0293",
+        "type": "error_conditions",
+        "description": "OSCCLK failure"
+      },
+      {
+        "id": "N0294",
+        "type": "error_conditions",
+        "description": "Watchdog counter overflow"
+      },
+      {
+        "id": "N0295",
+        "type": "error_conditions",
+        "description": "Bad key"
+      },
+      {
+        "id": "N0296",
+        "type": "error_conditions",
+        "description": "Out of window"
+      },
+      {
+        "id": "N0297",
+        "type": "error_conditions",
+        "description": "Clock failure"
+      },
+      {
+        "id": "N0352",
+        "type": "error_conditions",
+        "description": "Watchdog interrupt"
+      },
+      {
+        "id": "N0353",
+        "type": "error_conditions",
+        "description": "Fetch protection violation"
+      },
+      {
+        "id": "N0354",
+        "type": "error_conditions",
+        "description": "Write protection violation"
+      },
+      {
+        "id": "N0355",
+        "type": "error_conditions",
+        "description": "Read protection violation"
+      },
+      {
+        "id": "N0356",
+        "type": "error_conditions",
+        "description": "CLA fetch protection violation"
+      },
+      {
+        "id": "N0357",
+        "type": "error_conditions",
+        "description": "Non-master access violation"
+      },
+      {
+        "id": "N0358",
+        "type": "error_conditions",
+        "description": "Access violation"
+      },
+      {
+        "id": "N0359",
+        "type": "error_conditions",
+        "description": "ITRAP"
+      },
+      {
+        "id": "N0360",
+        "type": "error_conditions",
+        "description": "MSTOP"
+      },
+      {
+        "id": "N0408",
+        "type": "error_conditions",
+        "description": "CLA write protection violation"
+      },
+      {
+        "id": "N0409",
+        "type": "error_conditions",
+        "description": "CLA read protection violation"
+      },
+      {
+        "id": "N0410",
+        "type": "error_conditions",
+        "description": "DMA write protection violation"
+      },
+      {
+        "id": "N0411",
+        "type": "error_conditions",
+        "description": "non-master write protection violation"
+      },
+      {
+        "id": "N0412",
+        "type": "error_conditions",
+        "description": "master DMA write protection violation"
+      },
+      {
+        "id": "N0413",
+        "type": "error_conditions",
+        "description": "memory error"
+      },
+      {
+        "id": "N0414",
+        "type": "error_conditions",
+        "description": "single error"
+      },
+      {
+        "id": "N0415",
+        "type": "error_conditions",
+        "description": "double error"
+      },
+      {
+        "id": "N0442",
+        "type": "error_conditions",
+        "description": "Parity errors"
+      },
+      {
+        "id": "N0443",
+        "type": "error_conditions",
+        "description": "Single-bit ECC errors"
+      },
+      {
+        "id": "N0444",
+        "type": "error_conditions",
+        "description": "Double-bit ECC errors"
+      },
+      {
+        "id": "N0445",
+        "type": "error_conditions",
+        "description": "Address ECC errors"
+      },
+      {
+        "id": "N0446",
+        "type": "error_conditions",
+        "description": "Correctable errors"
+      },
+      {
+        "id": "N0447",
+        "type": "error_conditions",
+        "description": "Uncorrectable errors"
+      },
+      {
+        "id": "N0448",
+        "type": "error_conditions",
+        "description": "Single-bit error for Parity RAMs"
+      },
+      {
+        "id": "N0449",
+        "type": "error_conditions",
+        "description": "Double bit Error for ECC RAMs"
+      },
+      {
+        "id": "N0450",
+        "type": "error_conditions",
+        "description": "Address error"
+      },
+      {
+        "id": "N0474",
+        "type": "error_conditions",
+        "description": "ECC error"
+      },
+      {
+        "id": "N0475",
+        "type": "error_conditions",
+        "description": "Parity error"
+      },
+      {
+        "id": "N0476",
+        "type": "error_conditions",
+        "description": "Memory read/write does not happen correctly"
+      },
+      {
+        "id": "N0477",
+        "type": "error_conditions",
+        "description": "Initialization does not happen correctly"
+      },
+      {
+        "id": "N0512",
+        "type": "error_conditions",
+        "description": "Invalid pointer dereference"
+      },
+      {
+        "id": "N0513",
+        "type": "error_conditions",
+        "description": "PC discontinuity"
+      },
+      {
+        "id": "N0549",
+        "type": "error_conditions",
+        "description": "Single-bit data error"
+      },
+      {
+        "id": "N0550",
+        "type": "error_conditions",
+        "description": "Double-bit data error"
+      },
+      {
+        "id": "N0551",
+        "type": "error_conditions",
+        "description": "Uncorrectable error"
+      },
+      {
+        "id": "N0552",
+        "type": "error_conditions",
+        "description": "Memory faults"
+      }
+    ],
+    "status_indicators": [
+      {
+        "id": "N0009",
+        "type": "status_indicators",
+        "description": "EALLOW bit"
+      },
+      {
+        "id": "N0010",
+        "type": "status_indicators",
+        "description": "DCDCSTS.SWSEQDON"
+      },
+      {
+        "id": "N0011",
+        "type": "status_indicators",
+        "description": "DCDCSTS.INDDETECT"
+      },
+      {
+        "id": "N0012",
+        "type": "status_indicators",
+        "description": "DCDCCTL.DCDCEN bit"
+      },
+      {
+        "id": "N0013",
+        "type": "status_indicators",
+        "description": "XRSn bit in RESC register"
+      },
+      {
+        "id": "N0014",
+        "type": "status_indicators",
+        "description": "RESC register bits"
+      },
+      {
+        "id": "N0054",
+        "type": "status_indicators",
+        "description": "POR bit in RESC is set"
+      },
+      {
+        "id": "N0055",
+        "type": "status_indicators",
+        "description": "XRSn bit in RESC is set"
+      },
+      {
+        "id": "N0056",
+        "type": "status_indicators",
+        "description": "WDRSn bit in RESC is set"
+      },
+      {
+        "id": "N0057",
+        "type": "status_indicators",
+        "description": "NMIWDRSn bit in RESC is set"
+      },
+      {
+        "id": "N0058",
+        "type": "status_indicators",
+        "description": "SCCRESETn bit in RESC is set"
+      },
+      {
+        "id": "N0090",
+        "type": "status_indicators",
+        "description": "flag registers"
+      },
+      {
+        "id": "N0091",
+        "type": "status_indicators",
+        "description": "enable registers"
+      },
+      {
+        "id": "N0092",
+        "type": "status_indicators",
+        "description": "status register bits"
+      },
+      {
+        "id": "N0135",
+        "type": "status_indicators",
+        "description": "PIEIERx enable register bits"
+      },
+      {
+        "id": "N0136",
+        "type": "status_indicators",
+        "description": "PIEIFRx flag register bits"
+      },
+      {
+        "id": "N0137",
+        "type": "status_indicators",
+        "description": "PIEACK register bit"
+      },
+      {
+        "id": "N0138",
+        "type": "status_indicators",
+        "description": "IER enable register"
+      },
+      {
+        "id": "N0139",
+        "type": "status_indicators",
+        "description": "IFR flag register"
+      },
+      {
+        "id": "N0140",
+        "type": "status_indicators",
+        "description": "ST1.INTM bit"
+      },
+      {
+        "id": "N0153",
+        "type": "status_indicators",
+        "description": "PIEIFRx.y"
+      },
+      {
+        "id": "N0154",
+        "type": "status_indicators",
+        "description": "PIEIERx.y is set"
+      },
+      {
+        "id": "N0155",
+        "type": "status_indicators",
+        "description": "PIEACK.x is clear"
+      },
+      {
+        "id": "N0156",
+        "type": "status_indicators",
+        "description": "PIEACK.x is set"
+      },
+      {
+        "id": "N0157",
+        "type": "status_indicators",
+        "description": "IFR.x"
+      },
+      {
+        "id": "N0158",
+        "type": "status_indicators",
+        "description": "IER.x is set"
+      },
+      {
+        "id": "N0159",
+        "type": "status_indicators",
+        "description": "INTM is clear"
+      },
+      {
+        "id": "N0160",
+        "type": "status_indicators",
+        "description": "IFR.x and IER.x are cleared"
+      },
+      {
+        "id": "N0161",
+        "type": "status_indicators",
+        "description": "INTM is set"
+      },
+      {
+        "id": "N0162",
+        "type": "status_indicators",
+        "description": "EALLOW is cleared"
+      },
+      {
+        "id": "N0163",
+        "type": "status_indicators",
+        "description": "PIEIFRx.y is cleared"
+      },
+      {
+        "id": "N0164",
+        "type": "status_indicators",
+        "description": "PIEIER and IER registers are cleared"
+      },
+      {
+        "id": "N0165",
+        "type": "status_indicators",
+        "description": "ENPIE bit of the PIECTRL register"
+      },
+      {
+        "id": "N0166",
+        "type": "status_indicators",
+        "description": "PIEIERx bit"
+      },
+      {
+        "id": "N0167",
+        "type": "status_indicators",
+        "description": "CPU IER bit"
+      },
+      {
+        "id": "N0168",
+        "type": "status_indicators",
+        "description": "PIEACK bit"
+      },
+      {
+        "id": "N0202",
+        "type": "status_indicators",
+        "description": "CPU global interrupt mask"
+      },
+      {
+        "id": "N0203",
+        "type": "status_indicators",
+        "description": "INTM"
+      },
+      {
+        "id": "N0204",
+        "type": "status_indicators",
+        "description": "IER"
+      },
+      {
+        "id": "N0205",
+        "type": "status_indicators",
+        "description": "PIEIERx registers"
+      },
+      {
+        "id": "N0206",
+        "type": "status_indicators",
+        "description": "PIEIER bit"
+      },
+      {
+        "id": "N0207",
+        "type": "status_indicators",
+        "description": "CPU IFR register"
+      },
+      {
+        "id": "N0208",
+        "type": "status_indicators",
+        "description": "CPU IFR bit"
+      },
+      {
+        "id": "N0209",
+        "type": "status_indicators",
+        "description": "PIEIFR bits"
+      },
+      {
+        "id": "N0210",
+        "type": "status_indicators",
+        "description": "PIEVERRADDR register"
+      },
+      {
+        "id": "N0249",
+        "type": "status_indicators",
+        "description": "PIEACK for the group must be cleared"
+      },
+      {
+        "id": "N0265",
+        "type": "status_indicators",
+        "description": "NMIFLG register status bit"
+      },
+      {
+        "id": "N0266",
+        "type": "status_indicators",
+        "description": "NMIINT bit in NMIFLG register"
+      },
+      {
+        "id": "N0267",
+        "type": "status_indicators",
+        "description": "SWERR bit in NMIFLGFRC register"
+      },
+      {
+        "id": "N0268",
+        "type": "status_indicators",
+        "description": "SWERR flag"
+      },
+      {
+        "id": "N0298",
+        "type": "status_indicators",
+        "description": "NMI_FLG bit is set"
+      },
+      {
+        "id": "N0299",
+        "type": "status_indicators",
+        "description": "NMISHDFLG register bits"
+      },
+      {
+        "id": "N0300",
+        "type": "status_indicators",
+        "description": "ERRORSTS signal goes low"
+      },
+      {
+        "id": "N0301",
+        "type": "status_indicators",
+        "description": "MCDCR.MCLKSTS bit"
+      },
+      {
+        "id": "N0302",
+        "type": "status_indicators",
+        "description": "MCDCR.MCDSTS flag"
+      },
+      {
+        "id": "N0303",
+        "type": "status_indicators",
+        "description": "CLOCKFAIL signal goes high"
+      },
+      {
+        "id": "N0304",
+        "type": "status_indicators",
+        "description": "WDRSn flag"
+      },
+      {
+        "id": "N0305",
+        "type": "status_indicators",
+        "description": "PLLSTS[MCLKSTS] bit"
+      },
+      {
+        "id": "N0306",
+        "type": "status_indicators",
+        "description": "X1CNT register value reaches 1023 (0x3FF)"
+      },
+      {
+        "id": "N0307",
+        "type": "status_indicators",
+        "description": "WDCNTR overflow"
+      },
+      {
+        "id": "N0361",
+        "type": "status_indicators",
+        "description": "WDRST signal"
+      },
+      {
+        "id": "N0362",
+        "type": "status_indicators",
+        "description": "WDINT signal"
+      },
+      {
+        "id": "N0363",
+        "type": "status_indicators",
+        "description": "WDINTS bit"
+      },
+      {
+        "id": "N0364",
+        "type": "status_indicators",
+        "description": "LPMCR.LPM = 0x0"
+      },
+      {
+        "id": "N0365",
+        "type": "status_indicators",
+        "description": "LPMCR.LPM = 0x2"
+      },
+      {
+        "id": "N0366",
+        "type": "status_indicators",
+        "description": "SYSPLL.LOCKS = 1"
+      },
+      {
+        "id": "N0367",
+        "type": "status_indicators",
+        "description": "PLLCTL1.PLLCLKEN = 1"
+      },
+      {
+        "id": "N0368",
+        "type": "status_indicators",
+        "description": "CLKSRCCTL1.WDHALTI = 1"
+      },
+      {
+        "id": "N0369",
+        "type": "status_indicators",
+        "description": "CLKSRCCTL1.WDHALTI = 0"
+      },
+      {
+        "id": "N0370",
+        "type": "status_indicators",
+        "description": "XTALCR.OSCOFF bit"
+      },
+      {
+        "id": "N0371",
+        "type": "status_indicators",
+        "description": "MSEL_LSx bit field"
+      },
+      {
+        "id": "N0372",
+        "type": "status_indicators",
+        "description": "CLAPGM_LSx bit field"
+      },
+      {
+        "id": "N0373",
+        "type": "status_indicators",
+        "description": "FETCHPROTx bit"
+      },
+      {
+        "id": "N0374",
+        "type": "status_indicators",
+        "description": "CPUWRPROTx bit"
+      },
+      {
+        "id": "N0416",
+        "type": "status_indicators",
+        "description": "access violation flag register"
+      },
+      {
+        "id": "N0417",
+        "type": "status_indicators",
+        "description": "DMAWRPROTx bit"
+      },
+      {
+        "id": "N0418",
+        "type": "status_indicators",
+        "description": "DMA access violation flag register"
+      },
+      {
+        "id": "N0419",
+        "type": "status_indicators",
+        "description": "interrupt enable register"
+      },
+      {
+        "id": "N0451",
+        "type": "status_indicators",
+        "description": "correctable error count register"
+      },
+      {
+        "id": "N0452",
+        "type": "status_indicators",
+        "description": "correctable error threshold register"
+      },
+      {
+        "id": "N0453",
+        "type": "status_indicators",
+        "description": "correctable interrupt enable register"
+      },
+      {
+        "id": "N0454",
+        "type": "status_indicators",
+        "description": "flag gets set in a status register"
+      },
+      {
+        "id": "N0455",
+        "type": "status_indicators",
+        "description": "CPU/CPU.DMA/CPU.CLA1 CPU/DMA/CLA Read Error Address Register"
+      },
+      {
+        "id": "N0456",
+        "type": "status_indicators",
+        "description": "CPU/CPU.DMA CPU/DMA Read Error Address Register"
+      },
+      {
+        "id": "N0457",
+        "type": "status_indicators",
+        "description": "CPU/CPU.DMA/CPU.CLA1 CPU/DMA/CLA Read Address Error Register"
+      },
+      {
+        "id": "N0458",
+        "type": "status_indicators",
+        "description": "single error counter"
+      },
+      {
+        "id": "N0478",
+        "type": "status_indicators",
+        "description": "INIT bit"
+      },
+      {
+        "id": "N0479",
+        "type": "status_indicators",
+        "description": "INITDONE bit"
+      },
+      {
+        "id": "N0480",
+        "type": "status_indicators",
+        "description": "RAMINITDONE bit"
+      },
+      {
+        "id": "N0481",
+        "type": "status_indicators",
+        "description": "ECC Code for lower 16 bits of data"
+      },
+      {
+        "id": "N0482",
+        "type": "status_indicators",
+        "description": "ECC Code for upper 16 bits of data"
+      },
+      {
+        "id": "N0483",
+        "type": "status_indicators",
+        "description": "ECC Code for address"
+      },
+      {
+        "id": "N0484",
+        "type": "status_indicators",
+        "description": "Parity for lower 16 bits of data"
+      },
+      {
+        "id": "N0485",
+        "type": "status_indicators",
+        "description": "Parity for upper 16 bits of data"
+      },
+      {
+        "id": "N0486",
+        "type": "status_indicators",
+        "description": "Parity for address"
+      },
+      {
+        "id": "N0514",
+        "type": "status_indicators",
+        "description": "BNKPWR bit field in the FBFALLBAC register"
+      },
+      {
+        "id": "N0515",
+        "type": "status_indicators",
+        "description": "PMPPWR bit field in the FPAC1 register"
+      },
+      {
+        "id": "N0516",
+        "type": "status_indicators",
+        "description": "BAGP field in the FBAC register"
+      },
+      {
+        "id": "N0517",
+        "type": "status_indicators",
+        "description": "PAGP bit field in the FPAC2 register"
+      },
+      {
+        "id": "N0518",
+        "type": "status_indicators",
+        "description": "PREFETCH_EN bit in the FRD_INTF_CTRL register"
+      },
+      {
+        "id": "N0519",
+        "type": "status_indicators",
+        "description": "DATA_CACHE_EN bit in the FRD_INTF_CTRL register"
+      },
+      {
+        "id": "N0520",
+        "type": "status_indicators",
+        "description": "RWAIT bit-field in the FRDCNTL register"
+      },
+      {
+        "id": "N0521",
+        "type": "status_indicators",
+        "description": "PSLEEP bit field in the FPAC1 register"
+      },
+      {
+        "id": "N0553",
+        "type": "status_indicators",
+        "description": "ECC_ENABLE register"
+      },
+      {
+        "id": "N0554",
+        "type": "status_indicators",
+        "description": "Single-bit Error position"
+      },
+      {
+        "id": "N0555",
+        "type": "status_indicators",
+        "description": "8-bit output decoded"
+      },
+      {
+        "id": "N0556",
+        "type": "status_indicators",
+        "description": "ECC check bits"
+      }
+    ],
+    "components": [
+      {
+        "id": "N0015",
+        "type": "components",
+        "description": "CPU"
+      },
+      {
+        "id": "N0016",
+        "type": "components",
+        "description": "System control module"
+      },
+      {
+        "id": "N0017",
+        "type": "components",
+        "description": "PLL"
+      },
+      {
+        "id": "N0018",
+        "type": "components",
+        "description": "DMA controller"
+      },
+      {
+        "id": "N0019",
+        "type": "components",
+        "description": "ADC"
+      },
+      {
+        "id": "N0020",
+        "type": "components",
+        "description": "Watchdog timer"
+      },
+      {
+        "id": "N0021",
+        "type": "components",
+        "description": "32-bit CPU timers"
+      },
+      {
+        "id": "N0022",
+        "type": "components",
+        "description": "Memory controller module"
+      },
+      {
+        "id": "N0023",
+        "type": "components",
+        "description": "Flash memory"
+      },
+      {
+        "id": "N0024",
+        "type": "components",
+        "description": "OTP memory"
+      },
+      {
+        "id": "N0025",
+        "type": "components",
+        "description": "Dual Code Security Module"
+      },
+      {
+        "id": "N0026",
+        "type": "components",
+        "description": "Internal DC-DC regulator"
+      },
+      {
+        "id": "N0027",
+        "type": "components",
+        "description": "Internal LDO"
+      },
+      {
+        "id": "N0028",
+        "type": "components",
+        "description": "JTAG"
+      },
+      {
+        "id": "N0029",
+        "type": "components",
+        "description": "Peripherals"
+      },
+      {
+        "id": "N0030",
+        "type": "components",
+        "description": "RAM"
+      },
+      {
+        "id": "N0031",
+        "type": "components",
+        "description": "Boot ROM"
+      },
+      {
+        "id": "N0059",
+        "type": "components",
+        "description": "Power-on reset (POR) circuit"
+      },
+      {
+        "id": "N0060",
+        "type": "components",
+        "description": "XRS pin"
+      },
+      {
+        "id": "N0061",
+        "type": "components",
+        "description": "GPIOs"
+      },
+      {
+        "id": "N0062",
+        "type": "components",
+        "description": "Reset cause register (RESC)"
+      },
+      {
+        "id": "N0063",
+        "type": "components",
+        "description": "NMI shadow flag register (NMISHDFLG)"
+      },
+      {
+        "id": "N0064",
+        "type": "components",
+        "description": "X1 clock counter register (X1CNT)"
+      },
+      {
+        "id": "N0065",
+        "type": "components",
+        "description": "Debug logic"
+      },
+      {
+        "id": "N0066",
+        "type": "components",
+        "description": "JTAG port"
+      },
+      {
+        "id": "N0067",
+        "type": "components",
+        "description": "ICEPick debug module"
+      },
+      {
+        "id": "N0068",
+        "type": "components",
+        "description": "Device capability registers"
+      },
+      {
+        "id": "N0069",
+        "type": "components",
+        "description": "Clock source"
+      },
+      {
+        "id": "N0070",
+        "type": "components",
+        "description": "Missing clock detection"
+      },
+      {
+        "id": "N0071",
+        "type": "components",
+        "description": "PIE vector fetch error handler"
+      },
+      {
+        "id": "N0072",
+        "type": "components",
+        "description": "NMI flags"
+      },
+      {
+        "id": "N0073",
+        "type": "components",
+        "description": "Analog trims"
+      },
+      {
+        "id": "N0074",
+        "type": "components",
+        "description": "Non-maskable interrupt (NMI) module"
+      },
+      {
+        "id": "N0075",
+        "type": "components",
+        "description": "Dual-zone code security module (DCSM)"
+      },
+      {
+        "id": "N0076",
+        "type": "components",
+        "description": "CLA code"
+      },
+      {
+        "id": "N0077",
+        "type": "components",
+        "description": "INTOSC1"
+      },
+      {
+        "id": "N0093",
+        "type": "components",
+        "description": "peripheral interrupt lines"
+      },
+      {
+        "id": "N0094",
+        "type": "components",
+        "description": "INT13"
+      },
+      {
+        "id": "N0095",
+        "type": "components",
+        "description": "INT14"
+      },
+      {
+        "id": "N0096",
+        "type": "components",
+        "description": "CPU timers 1 and 2"
+      },
+      {
+        "id": "N0097",
+        "type": "components",
+        "description": "enhanced Peripheral Interrupt Expansion module"
+      },
+      {
+        "id": "N0098",
+        "type": "components",
+        "description": "ePIE"
+      },
+      {
+        "id": "N0099",
+        "type": "components",
+        "description": "PIE"
+      },
+      {
+        "id": "N0100",
+        "type": "components",
+        "description": "vector table"
+      },
+      {
+        "id": "N0101",
+        "type": "components",
+        "description": "INPUTXBAR4"
+      },
+      {
+        "id": "N0102",
+        "type": "components",
+        "description": "WDINT"
+      },
+      {
+        "id": "N0103",
+        "type": "components",
+        "description": "LPMINT"
+      },
+      {
+        "id": "N0104",
+        "type": "components",
+        "description": "WAKEINT"
+      },
+      {
+        "id": "N0105",
+        "type": "components",
+        "description": "TINT0"
+      },
+      {
+        "id": "N0106",
+        "type": "components",
+        "description": "NMI"
+      },
+      {
+        "id": "N0107",
+        "type": "components",
+        "description": "INPUTXBAR13"
+      },
+      {
+        "id": "N0108",
+        "type": "components",
+        "description": "INPUTXBAR5"
+      },
+      {
+        "id": "N0109",
+        "type": "components",
+        "description": "INPUTXBAR6"
+      },
+      {
+        "id": "N0110",
+        "type": "components",
+        "description": "INPUTXBAR14"
+      },
+      {
+        "id": "N0111",
+        "type": "components",
+        "description": "GPIO0"
+      },
+      {
+        "id": "N0112",
+        "type": "components",
+        "description": "GPIO1"
+      },
+      {
+        "id": "N0113",
+        "type": "components",
+        "description": "TIMER0"
+      },
+      {
+        "id": "N0114",
+        "type": "components",
+        "description": "TIMER1"
+      },
+      {
+        "id": "N0115",
+        "type": "components",
+        "description": "TIMER2"
+      },
+      {
+        "id": "N0116",
+        "type": "components",
+        "description": "RTOSINT"
+      },
+      {
+        "id": "N0117",
+        "type": "components",
+        "description": "ERAD"
+      },
+      {
+        "id": "N0118",
+        "type": "components",
+        "description": "XINT1 Control"
+      },
+      {
+        "id": "N0119",
+        "type": "components",
+        "description": "XINT5 Control"
+      },
+      {
+        "id": "N0120",
+        "type": "components",
+        "description": "XINT3 Control"
+      },
+      {
+        "id": "N0121",
+        "type": "components",
+        "description": "XINT4 Control"
+      },
+      {
+        "id": "N0122",
+        "type": "components",
+        "description": "XINT2 Control"
+      },
+      {
+        "id": "N0123",
+        "type": "components",
+        "description": "Input X-BAR"
+      },
+      {
+        "id": "N0124",
+        "type": "components",
+        "description": "LPM Logic"
+      },
+      {
+        "id": "N0125",
+        "type": "components",
+        "description": "WD"
+      },
+      {
+        "id": "N0126",
+        "type": "components",
+        "description": "NMI module"
+      },
+      {
+        "id": "N0141",
+        "type": "components",
+        "description": "PIE channels"
+      },
+      {
+        "id": "N0142",
+        "type": "components",
+        "description": "PIE groups"
+      },
+      {
+        "id": "N0143",
+        "type": "components",
+        "description": "PIE acknowledge register"
+      },
+      {
+        "id": "N0144",
+        "type": "components",
+        "description": "CPU interrupt logic"
+      },
+      {
+        "id": "N0145",
+        "type": "components",
+        "description": "Peripheral interrupts"
+      },
+      {
+        "id": "N0169",
+        "type": "components",
+        "description": "peripheral"
+      },
+      {
+        "id": "N0170",
+        "type": "components",
+        "description": "pipeline"
+      },
+      {
+        "id": "N0171",
+        "type": "components",
+        "description": "stack"
+      },
+      {
+        "id": "N0172",
+        "type": "components",
+        "description": "ISR"
+      },
+      {
+        "id": "N0173",
+        "type": "components",
+        "description": "GPIO"
+      },
+      {
+        "id": "N0174",
+        "type": "components",
+        "description": "PIE vector table"
+      },
+      {
+        "id": "N0175",
+        "type": "components",
+        "description": "TMS320C28x C compiler"
+      },
+      {
+        "id": "N0176",
+        "type": "components",
+        "description": "C28x RPT instruction"
+      },
+      {
+        "id": "N0211",
+        "type": "components",
+        "description": "PWMs"
+      },
+      {
+        "id": "N0212",
+        "type": "components",
+        "description": "primary vector table"
+      },
+      {
+        "id": "N0213",
+        "type": "components",
+        "description": "redundant vector table"
+      },
+      {
+        "id": "N0214",
+        "type": "components",
+        "description": "boot ROM handler"
+      },
+      {
+        "id": "N0215",
+        "type": "components",
+        "description": "peripheral registers"
+      },
+      {
+        "id": "N0216",
+        "type": "components",
+        "description": "EPWM"
+      },
+      {
+        "id": "N0217",
+        "type": "components",
+        "description": "ECAP"
+      },
+      {
+        "id": "N0218",
+        "type": "components",
+        "description": "EQEP"
+      },
+      {
+        "id": "N0219",
+        "type": "components",
+        "description": "CLB"
+      },
+      {
+        "id": "N0220",
+        "type": "components",
+        "description": "SPI"
+      },
+      {
+        "id": "N0221",
+        "type": "components",
+        "description": "I2C"
+      },
+      {
+        "id": "N0222",
+        "type": "components",
+        "description": "SCI"
+      },
+      {
+        "id": "N0223",
+        "type": "components",
+        "description": "DCAN"
+      },
+      {
+        "id": "N0224",
+        "type": "components",
+        "description": "CLA"
+      },
+      {
+        "id": "N0225",
+        "type": "components",
+        "description": "FPU"
+      },
+      {
+        "id": "N0226",
+        "type": "components",
+        "description": "FLASH"
+      },
+      {
+        "id": "N0250",
+        "type": "components",
+        "description": "PIE group"
+      },
+      {
+        "id": "N0251",
+        "type": "components",
+        "description": "ADCA"
+      },
+      {
+        "id": "N0252",
+        "type": "components",
+        "description": "ADCB"
+      },
+      {
+        "id": "N0253",
+        "type": "components",
+        "description": "ADCC"
+      },
+      {
+        "id": "N0254",
+        "type": "components",
+        "description": "SDFM"
+      },
+      {
+        "id": "N0255",
+        "type": "components",
+        "description": "DMA"
+      },
+      {
+        "id": "N0256",
+        "type": "components",
+        "description": "CAN"
+      },
+      {
+        "id": "N0269",
+        "type": "components",
+        "description": "NMI watchdog counter"
+      },
+      {
+        "id": "N0270",
+        "type": "components",
+        "description": "NMIFLG register"
+      },
+      {
+        "id": "N0271",
+        "type": "components",
+        "description": "NMIWDPRD register"
+      },
+      {
+        "id": "N0272",
+        "type": "components",
+        "description": "NMIFLGCLR register"
+      },
+      {
+        "id": "N0273",
+        "type": "components",
+        "description": "NMIFLGFRC register"
+      },
+      {
+        "id": "N0274",
+        "type": "components",
+        "description": "OSCCLK"
+      },
+      {
+        "id": "N0275",
+        "type": "components",
+        "description": "SYSCLK"
+      },
+      {
+        "id": "N0276",
+        "type": "components",
+        "description": "Missing clock detection logic"
+      },
+      {
+        "id": "N0308",
+        "type": "components",
+        "description": "GPIO24"
+      },
+      {
+        "id": "N0309",
+        "type": "components",
+        "description": "GPIO28"
+      },
+      {
+        "id": "N0310",
+        "type": "components",
+        "description": "GPIO29"
+      },
+      {
+        "id": "N0311",
+        "type": "components",
+        "description": "GPIO18"
+      },
+      {
+        "id": "N0312",
+        "type": "components",
+        "description": "System PLL"
+      },
+      {
+        "id": "N0313",
+        "type": "components",
+        "description": "INTOSC2"
+      },
+      {
+        "id": "N0314",
+        "type": "components",
+        "description": "XTAL"
+      },
+      {
+        "id": "N0315",
+        "type": "components",
+        "description": "X1 pin"
+      },
+      {
+        "id": "N0316",
+        "type": "components",
+        "description": "X2 pin"
+      },
+      {
+        "id": "N0317",
+        "type": "components",
+        "description": "VCO"
+      },
+      {
+        "id": "N0318",
+        "type": "components",
+        "description": "NMI watchdog timer"
+      },
+      {
+        "id": "N0319",
+        "type": "components",
+        "description": "ePWM modules"
+      },
+      {
+        "id": "N0320",
+        "type": "components",
+        "description": "CAN modules"
+      },
+      {
+        "id": "N0321",
+        "type": "components",
+        "description": "SCI modules"
+      },
+      {
+        "id": "N0322",
+        "type": "components",
+        "description": "SPI modules"
+      },
+      {
+        "id": "N0323",
+        "type": "components",
+        "description": "Flash wrapper"
+      },
+      {
+        "id": "N0324",
+        "type": "components",
+        "description": "Missing clock detection (MCD) subsystem"
+      },
+      {
+        "id": "N0325",
+        "type": "components",
+        "description": "CPU Timers 0/1/2"
+      },
+      {
+        "id": "N0326",
+        "type": "components",
+        "description": "Watchdog timer module"
+      },
+      {
+        "id": "N0327",
+        "type": "components",
+        "description": "WDKEY register"
+      },
+      {
+        "id": "N0328",
+        "type": "components",
+        "description": "WDCNTR counter"
+      },
+      {
+        "id": "N0375",
+        "type": "components",
+        "description": "Watchdog"
+      },
+      {
+        "id": "N0376",
+        "type": "components",
+        "description": "SCSR register"
+      },
+      {
+        "id": "N0377",
+        "type": "components",
+        "description": "SYSPLL"
+      },
+      {
+        "id": "N0378",
+        "type": "components",
+        "description": "Flash module"
+      },
+      {
+        "id": "N0379",
+        "type": "components",
+        "description": "M0 RAM"
+      },
+      {
+        "id": "N0380",
+        "type": "components",
+        "description": "M1 RAM"
+      },
+      {
+        "id": "N0381",
+        "type": "components",
+        "description": "LSx RAM"
+      },
+      {
+        "id": "N0382",
+        "type": "components",
+        "description": "GSx RAM"
+      },
+      {
+        "id": "N0383",
+        "type": "components",
+        "description": "MSGRAM"
+      },
+      {
+        "id": "N0384",
+        "type": "components",
+        "description": "WDCLK"
+      },
+      {
+        "id": "N0420",
+        "type": "components",
+        "description": "local shared RAM"
+      },
+      {
+        "id": "N0421",
+        "type": "components",
+        "description": "GSx memory"
+      },
+      {
+        "id": "N0422",
+        "type": "components",
+        "description": "M0 memory"
+      },
+      {
+        "id": "N0423",
+        "type": "components",
+        "description": "M1 memory"
+      },
+      {
+        "id": "N0424",
+        "type": "components",
+        "description": "dedicated RAMs"
+      },
+      {
+        "id": "N0425",
+        "type": "components",
+        "description": "shared RAMs"
+      },
+      {
+        "id": "N0459",
+        "type": "components",
+        "description": "CLA1"
+      },
+      {
+        "id": "N0460",
+        "type": "components",
+        "description": "Parity RAMs"
+      },
+      {
+        "id": "N0461",
+        "type": "components",
+        "description": "ECC RAMs"
+      },
+      {
+        "id": "N0462",
+        "type": "components",
+        "description": "CPU pipeline"
+      },
+      {
+        "id": "N0487",
+        "type": "components",
+        "description": "ECC/Parity bits"
+      },
+      {
+        "id": "N0488",
+        "type": "components",
+        "description": "Flash banks"
+      },
+      {
+        "id": "N0489",
+        "type": "components",
+        "description": "FMC"
+      },
+      {
+        "id": "N0490",
+        "type": "components",
+        "description": "Flash pump"
+      },
+      {
+        "id": "N0491",
+        "type": "components",
+        "description": "FSM"
+      },
+      {
+        "id": "N0492",
+        "type": "components",
+        "description": "DCSM"
+      },
+      {
+        "id": "N0493",
+        "type": "components",
+        "description": "CPU core"
+      },
+      {
+        "id": "N0494",
+        "type": "components",
+        "description": "RAMTEST mode"
+      },
+      {
+        "id": "N0495",
+        "type": "components",
+        "description": "Flash prefetch/cache"
+      },
+      {
+        "id": "N0496",
+        "type": "components",
+        "description": "Code-prefetch mechanism"
+      },
+      {
+        "id": "N0497",
+        "type": "components",
+        "description": "Data cache"
+      },
+      {
+        "id": "N0522",
+        "type": "components",
+        "description": "Shared pump"
+      },
+      {
+        "id": "N0523",
+        "type": "components",
+        "description": "ECC"
+      },
+      {
+        "id": "N0524",
+        "type": "components",
+        "description": "Bank0"
+      },
+      {
+        "id": "N0525",
+        "type": "components",
+        "description": "Bank1"
+      },
+      {
+        "id": "N0526",
+        "type": "components",
+        "description": "OTP"
+      },
+      {
+        "id": "N0527",
+        "type": "components",
+        "description": "USER OTP"
+      },
+      {
+        "id": "N0528",
+        "type": "components",
+        "description": "TI-OTP"
+      },
+      {
+        "id": "N0529",
+        "type": "components",
+        "description": "Flash Module Controller"
+      },
+      {
+        "id": "N0530",
+        "type": "components",
+        "description": "Flash state machine"
+      },
+      {
+        "id": "N0531",
+        "type": "components",
+        "description": "Charge pump"
+      },
+      {
+        "id": "N0532",
+        "type": "components",
+        "description": "Prefetch buffer"
+      },
+      {
+        "id": "N0557",
+        "type": "components",
+        "description": "Flash API"
+      },
+      {
+        "id": "N0558",
+        "type": "components",
+        "description": "SECDED module"
+      },
+      {
+        "id": "N0559",
+        "type": "components",
+        "description": "ECC memory space"
+      },
+      {
+        "id": "N0560",
+        "type": "components",
+        "description": "Flash Plugin"
+      },
+      {
+        "id": "N0561",
+        "type": "components",
+        "description": "Code Composer Studio IDE"
+      },
+      {
+        "id": "N0562",
+        "type": "components",
+        "description": "DCSM OTP"
+      },
+      {
+        "id": "N0563",
+        "type": "components",
+        "description": "DCSM Zx-LINKPOINTER1"
+      },
+      {
+        "id": "N0564",
+        "type": "components",
+        "description": "DCSM Zx-LINKPOINTER2"
+      },
+      {
+        "id": "N0565",
+        "type": "components",
+        "description": "DCSM Zx-LINKPOINTER3"
+      },
+      {
+        "id": "N0566",
+        "type": "components",
+        "description": "DCSM Zx-PSWDLOCK"
+      }
+    ],
+    "root_causes": [
+      {
+        "id": "N0032",
+        "type": "root_causes",
+        "description": "Invalid pointer dereference"
+      },
+      {
+        "id": "N0033",
+        "type": "root_causes",
+        "description": "Incorrect clock configuration"
+      },
+      {
+        "id": "N0034",
+        "type": "root_causes",
+        "description": "Hardware connection issues"
+      },
+      {
+        "id": "N0035",
+        "type": "root_causes",
+        "description": "Inductor not detected on VSW pin"
+      },
+      {
+        "id": "N0036",
+        "type": "root_causes",
+        "description": "Spurious CPU writes"
+      },
+      {
+        "id": "N0037",
+        "type": "root_causes",
+        "description": "Missing VREGENZ low signal"
+      },
+      {
+        "id": "N0078",
+        "type": "root_causes",
+        "description": "Power-up glitches"
+      },
+      {
+        "id": "N0079",
+        "type": "root_causes",
+        "description": "Watchdog timer not serviced within user-specified time"
+      },
+      {
+        "id": "N0080",
+        "type": "root_causes",
+        "description": "Hardware errors detected by NMI module"
+      },
+      {
+        "id": "N0081",
+        "type": "root_causes",
+        "description": "CPU does not respond to NMI error within user-specified time"
+      },
+      {
+        "id": "N0082",
+        "type": "root_causes",
+        "description": "Vector fetch in safe copy or CRC function while interrupts should be disabled"
+      },
+      {
+        "id": "N0127",
+        "type": "root_causes",
+        "description": "asynchronous program flow"
+      },
+      {
+        "id": "N0128",
+        "type": "root_causes",
+        "description": "multiple events triggering same interrupt signal"
+      },
+      {
+        "id": "N0146",
+        "type": "root_causes",
+        "description": "Software changes the state of the PIE while an interrupt is propagating"
+      },
+      {
+        "id": "N0177",
+        "type": "root_causes",
+        "description": "No interrupts are enabled by default at power-up"
+      },
+      {
+        "id": "N0178",
+        "type": "root_causes",
+        "description": "PIEACK bit not cleared manually in user code"
+      },
+      {
+        "id": "N0227",
+        "type": "root_causes",
+        "description": "interrupt signal already propagating when PIEIER write completes"
+      },
+      {
+        "id": "N0228",
+        "type": "root_causes",
+        "description": "read/modify/write operation on PIEIFR bits"
+      },
+      {
+        "id": "N0229",
+        "type": "root_causes",
+        "description": "PIEVERRADDR register value has not been set"
+      },
+      {
+        "id": "N0277",
+        "type": "root_causes",
+        "description": "OSCCLK source failure"
+      },
+      {
+        "id": "N0278",
+        "type": "root_causes",
+        "description": "NMI watchdog counter reaching NMIWDPRD value"
+      },
+      {
+        "id": "N0279",
+        "type": "root_causes",
+        "description": "Single-bit parity error in RAM read"
+      },
+      {
+        "id": "N0280",
+        "type": "root_causes",
+        "description": "Double-bit ECC data error in RAM read"
+      },
+      {
+        "id": "N0281",
+        "type": "root_causes",
+        "description": "Single-bit ECC address error in RAM read"
+      },
+      {
+        "id": "N0282",
+        "type": "root_causes",
+        "description": "Double-bit ECC data error in Flash read"
+      },
+      {
+        "id": "N0283",
+        "type": "root_causes",
+        "description": "Single-bit ECC address error in Flash read"
+      },
+      {
+        "id": "N0284",
+        "type": "root_causes",
+        "description": "Writing to SWERR bit"
+      },
+      {
+        "id": "N0329",
+        "type": "root_causes",
+        "description": "CPU tries to execute an illegal instruction"
+      },
+      {
+        "id": "N0330",
+        "type": "root_causes",
+        "description": "Complete loss of OSCCLK"
+      },
+      {
+        "id": "N0331",
+        "type": "root_causes",
+        "description": "Crystal oscillator failure"
+      },
+      {
+        "id": "N0332",
+        "type": "root_causes",
+        "description": "External oscillator failure"
+      },
+      {
+        "id": "N0333",
+        "type": "root_causes",
+        "description": "Device failure"
+      },
+      {
+        "id": "N0334",
+        "type": "root_causes",
+        "description": "Incorrect watchdog key sequence"
+      },
+      {
+        "id": "N0335",
+        "type": "root_causes",
+        "description": "Writing incorrect value to WDCR[WDCHK] bits"
+      },
+      {
+        "id": "N0336",
+        "type": "root_causes",
+        "description": "Improper value written to WDKEY"
+      },
+      {
+        "id": "N0385",
+        "type": "root_causes",
+        "description": "Watchdog counter reaches maximum value"
+      },
+      {
+        "id": "N0386",
+        "type": "root_causes",
+        "description": "Changing watchdog configuration while WDINT is active"
+      },
+      {
+        "id": "N0387",
+        "type": "root_causes",
+        "description": "Debug reset issued while WDINT is active"
+      },
+      {
+        "id": "N0388",
+        "type": "root_causes",
+        "description": "Flash program or erase operation ongoing"
+      },
+      {
+        "id": "N0389",
+        "type": "root_causes",
+        "description": "Wake event already asserted"
+      },
+      {
+        "id": "N0390",
+        "type": "root_causes",
+        "description": "System PLL not locked or not connected to system clock"
+      },
+      {
+        "id": "N0391",
+        "type": "root_causes",
+        "description": "Access to protected memory"
+      },
+      {
+        "id": "N0392",
+        "type": "root_causes",
+        "description": "Unauthorized master access"
+      },
+      {
+        "id": "N0426",
+        "type": "root_causes",
+        "description": "data write access from CLA to dedicated CPU RAM"
+      },
+      {
+        "id": "N0427",
+        "type": "root_causes",
+        "description": "data write access from CLA to CLA program RAM"
+      },
+      {
+        "id": "N0428",
+        "type": "root_causes",
+        "description": "data read access from CLA to dedicated CPU RAM"
+      },
+      {
+        "id": "N0429",
+        "type": "root_causes",
+        "description": "data read access from CLA to CLA program RAM"
+      },
+      {
+        "id": "N0430",
+        "type": "root_causes",
+        "description": "write access by DMA to protected memory"
+      },
+      {
+        "id": "N0431",
+        "type": "root_causes",
+        "description": "write access to GSx memory by non-master DMA"
+      },
+      {
+        "id": "N0432",
+        "type": "root_causes",
+        "description": "write access to dedicated or shared memory by master DMA with DMAWRPROTx set to 1"
+      },
+      {
+        "id": "N0463",
+        "type": "root_causes",
+        "description": "Single-bit error at memory address"
+      },
+      {
+        "id": "N0464",
+        "type": "root_causes",
+        "description": "Double-bit error due to another single-bit error at the same memory address"
+      },
+      {
+        "id": "N0465",
+        "type": "root_causes",
+        "description": "Data read from memory error"
+      },
+      {
+        "id": "N0466",
+        "type": "root_causes",
+        "description": "Address error during memory access"
+      },
+      {
+        "id": "N0467",
+        "type": "root_causes",
+        "description": "Garbage instructions entering CPU pipeline"
+      },
+      {
+        "id": "N0498",
+        "type": "root_causes",
+        "description": "Read from uninitialized RAM locations"
+      },
+      {
+        "id": "N0499",
+        "type": "root_causes",
+        "description": "Fetch from uninitialized RAM locations"
+      },
+      {
+        "id": "N0500",
+        "type": "root_causes",
+        "description": "Memory accessed before RAMINITDONE is set"
+      },
+      {
+        "id": "N0501",
+        "type": "root_causes",
+        "description": "Invalid ECC/Parity bits"
+      },
+      {
+        "id": "N0502",
+        "type": "root_causes",
+        "description": "Corrupted data bits"
+      },
+      {
+        "id": "N0533",
+        "type": "root_causes",
+        "description": "Flash banks are in sleep power mode at power-up"
+      },
+      {
+        "id": "N0534",
+        "type": "root_causes",
+        "description": "Wait-states are set to maximum at power-up"
+      },
+      {
+        "id": "N0535",
+        "type": "root_causes",
+        "description": "Prefetch mechanism tries to fetch from outside the bank"
+      },
+      {
+        "id": "N0536",
+        "type": "root_causes",
+        "description": "PC discontinuity caused by executing branch, BANZ, call, or loop instructions"
+      },
+      {
+        "id": "N0537",
+        "type": "root_causes",
+        "description": "Security zone is in locked state"
+      },
+      {
+        "id": "N0567",
+        "type": "root_causes",
+        "description": "Single-bit data error in address field"
+      },
+      {
+        "id": "N0568",
+        "type": "root_causes",
+        "description": "Double-bit data error"
+      },
+      {
+        "id": "N0569",
+        "type": "root_causes",
+        "description": "Address error"
+      },
+      {
+        "id": "N0570",
+        "type": "root_causes",
+        "description": "Memory faults"
+      }
+    ],
+    "solutions": [
+      {
+        "id": "N0038",
+        "type": "solutions",
+        "description": "Reset the device"
+      },
+      {
+        "id": "N0039",
+        "type": "solutions",
+        "description": "Check memory allocation"
+      },
+      {
+        "id": "N0040",
+        "type": "solutions",
+        "description": "Inspect register values"
+      },
+      {
+        "id": "N0041",
+        "type": "solutions",
+        "description": "Set EALLOW bit"
+      },
+      {
+        "id": "N0042",
+        "type": "solutions",
+        "description": "Execute EALLOW instruction"
+      },
+      {
+        "id": "N0043",
+        "type": "solutions",
+        "description": "Execute EDIS instruction"
+      },
+      {
+        "id": "N0044",
+        "type": "solutions",
+        "description": "Wait for DCDCSTS.SWSEQDON to equal 0x1"
+      },
+      {
+        "id": "N0045",
+        "type": "solutions",
+        "description": "Check hardware connections"
+      },
+      {
+        "id": "N0046",
+        "type": "solutions",
+        "description": "Delay 80\u03bcs for DC-DC regulator output to settle"
+      },
+      {
+        "id": "N0047",
+        "type": "solutions",
+        "description": "Clear DCDCCTL.DCDCEN bit"
+      },
+      {
+        "id": "N0048",
+        "type": "solutions",
+        "description": "Write ones to RESCCLR register"
+      },
+      {
+        "id": "N0049",
+        "type": "solutions",
+        "description": "Check DCDCSTS.INDDETECT bit"
+      },
+      {
+        "id": "N0083",
+        "type": "solutions",
+        "description": "Drive XRS pin low externally to provide correct reset duration"
+      },
+      {
+        "id": "N0084",
+        "type": "solutions",
+        "description": "Service watchdog timer within specified time"
+      },
+      {
+        "id": "N0085",
+        "type": "solutions",
+        "description": "Disable interrupts before calling safe copy or CRC functions"
+      },
+      {
+        "id": "N0086",
+        "type": "solutions",
+        "description": "Use Code Composer Studio IDE to trigger debugger reset"
+      },
+      {
+        "id": "N0087",
+        "type": "solutions",
+        "description": "Check RESC register bits to determine reset cause"
+      },
+      {
+        "id": "N0129",
+        "type": "solutions",
+        "description": "reading the peripheral's status register"
+      },
+      {
+        "id": "N0130",
+        "type": "solutions",
+        "description": "clear status register bits manually"
+      },
+      {
+        "id": "N0131",
+        "type": "solutions",
+        "description": "implement and prioritize nested interrupts in software"
+      },
+      {
+        "id": "N0132",
+        "type": "solutions",
+        "description": "disable interrupts during critical tasks"
+      },
+      {
+        "id": "N0147",
+        "type": "solutions",
+        "description": "Use procedures for safely modifying the PIE configuration once interrupts have been enabled"
+      },
+      {
+        "id": "N0148",
+        "type": "solutions",
+        "description": "Use SETC and CLRC instructions to control global interrupt mask"
+      },
+      {
+        "id": "N0149",
+        "type": "solutions",
+        "description": "Use C2000Ware's DINT and EINT macros in C code"
+      },
+      {
+        "id": "N0179",
+        "type": "solutions",
+        "description": "Disable interrupts globally (DINT or SETC INTM)"
+      },
+      {
+        "id": "N0180",
+        "type": "solutions",
+        "description": "Enable the PIE by setting the ENPIE bit of the PIECTRL register"
+      },
+      {
+        "id": "N0181",
+        "type": "solutions",
+        "description": "Write the ISR vector for each interrupt to the appropriate location in the PIE vector table"
+      },
+      {
+        "id": "N0182",
+        "type": "solutions",
+        "description": "Set the appropriate PIEIERx bit for each interrupt"
+      },
+      {
+        "id": "N0183",
+        "type": "solutions",
+        "description": "Set the CPU IER bit for any PIE group containing enabled interrupts"
+      },
+      {
+        "id": "N0184",
+        "type": "solutions",
+        "description": "Enable the interrupt in the peripheral"
+      },
+      {
+        "id": "N0185",
+        "type": "solutions",
+        "description": "Enable interrupts globally (EINT or CLRC INTM)"
+      },
+      {
+        "id": "N0186",
+        "type": "solutions",
+        "description": "Save and restore the state of certain CPU registers"
+      },
+      {
+        "id": "N0187",
+        "type": "solutions",
+        "description": "Clear the PIEACK bit for the interrupt group"
+      },
+      {
+        "id": "N0188",
+        "type": "solutions",
+        "description": "Return using the IRET instruction"
+      },
+      {
+        "id": "N0189",
+        "type": "solutions",
+        "description": "Use the __interrupt keyword for function definition"
+      },
+      {
+        "id": "N0230",
+        "type": "solutions",
+        "description": "set the CPU global interrupt mask using DINT or SETC INTM"
+      },
+      {
+        "id": "N0231",
+        "type": "solutions",
+        "description": "Clear the PIEIER bit for the interrupt"
+      },
+      {
+        "id": "N0232",
+        "type": "solutions",
+        "description": "Wait 5 cycles to make sure that any propagating interrupt has reached the CPU IFR register"
+      },
+      {
+        "id": "N0233",
+        "type": "solutions",
+        "description": "Clear the CPU IFR bit for the interrupt's PIE group"
+      },
+      {
+        "id": "N0234",
+        "type": "solutions",
+        "description": "Clear the PIEACK bit for the interrupt's PIE group"
+      },
+      {
+        "id": "N0235",
+        "type": "solutions",
+        "description": "Modify the PIE vector table to map the PIEIFR bit's interrupt vector to an empty ISR"
+      },
+      {
+        "id": "N0236",
+        "type": "solutions",
+        "description": "Disable the interrupt in the peripheral registers"
+      },
+      {
+        "id": "N0237",
+        "type": "solutions",
+        "description": "Wait for the pending interrupt to be serviced by the empty ISR"
+      },
+      {
+        "id": "N0238",
+        "type": "solutions",
+        "description": "Modify the PIE vector table to map the interrupt vector back to the original ISR"
+      },
+      {
+        "id": "N0239",
+        "type": "solutions",
+        "description": "use software control of the IER and PIEIERx registers"
+      },
+      {
+        "id": "N0257",
+        "type": "solutions",
+        "description": "channel 1.1's ISR has to clear PIEACK for group 1"
+      },
+      {
+        "id": "N0285",
+        "type": "solutions",
+        "description": "Clear flag bit using NMIFLGCLR register"
+      },
+      {
+        "id": "N0286",
+        "type": "solutions",
+        "description": "Clear NMIINT bit in NMIFLG register"
+      },
+      {
+        "id": "N0287",
+        "type": "solutions",
+        "description": "Write NMI handler vector to PIE vector table"
+      },
+      {
+        "id": "N0288",
+        "type": "solutions",
+        "description": "PLL is bypassed and OSCCLK connected to INTOSC1"
+      },
+      {
+        "id": "N0289",
+        "type": "solutions",
+        "description": "Use SWERR flag for self-test mode implementation"
+      },
+      {
+        "id": "N0337",
+        "type": "solutions",
+        "description": "Clear flags by CPU or power-on reset"
+      },
+      {
+        "id": "N0338",
+        "type": "solutions",
+        "description": "Use external pull-down resistor for error-state assertion"
+      },
+      {
+        "id": "N0339",
+        "type": "solutions",
+        "description": "Use external pull-up resistor to prevent error-state assertion"
+      },
+      {
+        "id": "N0340",
+        "type": "solutions",
+        "description": "Follow crystal/resonator startup procedure"
+      },
+      {
+        "id": "N0341",
+        "type": "solutions",
+        "description": "Clear X1 counter by writing 1 to X1CNT.CLR"
+      },
+      {
+        "id": "N0342",
+        "type": "solutions",
+        "description": "Wait for X1 counter to reach 1023 (0x3FF)"
+      },
+      {
+        "id": "N0343",
+        "type": "solutions",
+        "description": "Check MCLKSTS bit in MCDCR register"
+      },
+      {
+        "id": "N0344",
+        "type": "solutions",
+        "description": "Clear missing clock status by writing 1 to MCDCR.MCLKCLR"
+      },
+      {
+        "id": "N0345",
+        "type": "solutions",
+        "description": "Write proper sequence (0x55 + 0xAA) to WDKEY register"
+      },
+      {
+        "id": "N0346",
+        "type": "solutions",
+        "description": "Clear WDRSn flag after reading"
+      },
+      {
+        "id": "N0347",
+        "type": "solutions",
+        "description": "Use C2000Ware SysCtl:setClock() function for PLL configuration"
+      },
+      {
+        "id": "N0348",
+        "type": "solutions",
+        "description": "Wait 300 NOP instructions after clock source change"
+      },
+      {
+        "id": "N0349",
+        "type": "solutions",
+        "description": "Wait at least 60 CPU clock cycles after bypassing PLL"
+      },
+      {
+        "id": "N0350",
+        "type": "solutions",
+        "description": "Set WDWCR register for minimum window check"
+      },
+      {
+        "id": "N0351",
+        "type": "solutions",
+        "description": "Service watchdog when WDCNTR >= WDWCR"
+      },
+      {
+        "id": "N0393",
+        "type": "solutions",
+        "description": "Check WDINTS bit in SCSR register"
+      },
+      {
+        "id": "N0394",
+        "type": "solutions",
+        "description": "Enable WAKEINT interrupt in PIE"
+      },
+      {
+        "id": "N0395",
+        "type": "solutions",
+        "description": "Set LPMCR.LPM to appropriate value"
+      },
+      {
+        "id": "N0396",
+        "type": "solutions",
+        "description": "Execute IDLE instruction"
+      },
+      {
+        "id": "N0397",
+        "type": "solutions",
+        "description": "Drive GPIO low for minimum 5us"
+      },
+      {
+        "id": "N0398",
+        "type": "solutions",
+        "description": "Wait 16 \u03bcs plus 1024 OSCLK cycles"
+      },
+      {
+        "id": "N0399",
+        "type": "solutions",
+        "description": "Switch SYSCLK source from PLLCLK to OSCCLKLK"
+      },
+      {
+        "id": "N0400",
+        "type": "solutions",
+        "description": "Disable peripheral clocks through PCLKCRx registers"
+      },
+      {
+        "id": "N0401",
+        "type": "solutions",
+        "description": "Configure GPIOLPMSEL0 and GPIOLPMSEL1"
+      },
+      {
+        "id": "N0402",
+        "type": "solutions",
+        "description": "Power off XTAL prior to entering HALT"
+      },
+      {
+        "id": "N0403",
+        "type": "solutions",
+        "description": "Execute function from RAM when powering down Flash"
+      },
+      {
+        "id": "N0404",
+        "type": "solutions",
+        "description": "Optimize PSLEEP and RWAIT values"
+      },
+      {
+        "id": "N0405",
+        "type": "solutions",
+        "description": "Configure Flash fallback mode to active state"
+      },
+      {
+        "id": "N0406",
+        "type": "solutions",
+        "description": "Configure access protection registers"
+      },
+      {
+        "id": "N0407",
+        "type": "solutions",
+        "description": "Lock configuration using GSxCOMMIT register"
+      },
+      {
+        "id": "N0433",
+        "type": "solutions",
+        "description": "write gets ignored"
+      },
+      {
+        "id": "N0434",
+        "type": "solutions",
+        "description": "flag gets set in access violation flag register"
+      },
+      {
+        "id": "N0435",
+        "type": "solutions",
+        "description": "memory address gets latched in CLA write access violation address register"
+      },
+      {
+        "id": "N0436",
+        "type": "solutions",
+        "description": "memory address gets latched in CLA read access violation address register"
+      },
+      {
+        "id": "N0437",
+        "type": "solutions",
+        "description": "memory address gets latched in DMA fetch access violation address register"
+      },
+      {
+        "id": "N0438",
+        "type": "solutions",
+        "description": "access violation interrupt is generated to CPU if enabled"
+      },
+      {
+        "id": "N0439",
+        "type": "solutions",
+        "description": "access violation interrupt is generated to master CPU if enabled"
+      },
+      {
+        "id": "N0440",
+        "type": "solutions",
+        "description": "use ECC protection for dedicated RAMs"
+      },
+      {
+        "id": "N0441",
+        "type": "solutions",
+        "description": "use parity protection for shared RAMs"
+      },
+      {
+        "id": "N0468",
+        "type": "solutions",
+        "description": "Error gets corrected by the memory controller module"
+      },
+      {
+        "id": "N0469",
+        "type": "solutions",
+        "description": "Correct data is written back into the memory"
+      },
+      {
+        "id": "N0470",
+        "type": "solutions",
+        "description": "Configure the correctable error threshold register based on system requirements"
+      },
+      {
+        "id": "N0471",
+        "type": "solutions",
+        "description": "Handle error situations appropriately in software using status and interrupt indications"
+      },
+      {
+        "id": "N0472",
+        "type": "solutions",
+        "description": "Use interrupt when error counter reaches user programmable threshold"
+      },
+      {
+        "id": "N0473",
+        "type": "solutions",
+        "description": "Correctable and uncorrectable errors are masked during debug accesses"
+      },
+      {
+        "id": "N0503",
+        "type": "solutions",
+        "description": "Set INIT bit to 1 for specific RAM block"
+      },
+      {
+        "id": "N0504",
+        "type": "solutions",
+        "description": "Poll INITDONE bit for RAM block to be set"
+      },
+      {
+        "id": "N0505",
+        "type": "solutions",
+        "description": "Initialize RAM block with 0x0 data and respective ECC/Parity bits"
+      },
+      {
+        "id": "N0506",
+        "type": "solutions",
+        "description": "Use 32-bit access only in test mode"
+      },
+      {
+        "id": "N0507",
+        "type": "solutions",
+        "description": "Choose different test mode to access ECC/Parity bits"
+      },
+      {
+        "id": "N0508",
+        "type": "solutions",
+        "description": "Wait for RAMINITDONE to be set before accessing memory"
+      },
+      {
+        "id": "N0509",
+        "type": "solutions",
+        "description": "Use RAM_INIT feature for each memory block"
+      },
+      {
+        "id": "N0510",
+        "type": "solutions",
+        "description": "Inject ECC/Parity error for testing"
+      },
+      {
+        "id": "N0511",
+        "type": "solutions",
+        "description": "Configure wait states and operating mode of Flash"
+      },
+      {
+        "id": "N0538",
+        "type": "solutions",
+        "description": "Initialize wait-states using the FRDCNTL register"
+      },
+      {
+        "id": "N0539",
+        "type": "solutions",
+        "description": "Configure cache/prefetch features using the FRD_INTF_CTRL register"
+      },
+      {
+        "id": "N0540",
+        "type": "solutions",
+        "description": "Execute Flash configuration software only from RAM memory"
+      },
+      {
+        "id": "N0541",
+        "type": "solutions",
+        "description": "Turn off pre-fetch and data caching before initializing wait-states"
+      },
+      {
+        "id": "N0542",
+        "type": "solutions",
+        "description": "Use Flash API library for program, erase, and verify operations"
+      },
+      {
+        "id": "N0543",
+        "type": "solutions",
+        "description": "Execute Flash API from RAM in single-bank devices"
+      },
+      {
+        "id": "N0544",
+        "type": "solutions",
+        "description": "Execute Flash API from one bank to perform operations on another bank in dual-bank devices"
+      },
+      {
+        "id": "N0545",
+        "type": "solutions",
+        "description": "Follow typical flow: Erase \u2192 Program \u2192 Verify"
+      },
+      {
+        "id": "N0546",
+        "type": "solutions",
+        "description": "Use Fapi_issueAsyncCommandWithAddress() for erase operations"
+      },
+      {
+        "id": "N0547",
+        "type": "solutions",
+        "description": "Use Fapi_doBlankCheck() to determine if Flash bank is blank"
+      },
+      {
+        "id": "N0548",
+        "type": "solutions",
+        "description": "Configure RWAIT using formula: RWAIT = ceiling[(SYSCLK/FCLK) - 1]"
+      },
+      {
+        "id": "N0571",
+        "type": "solutions",
+        "description": "Use Fapi_issueProgrammingCommand()"
+      },
+      {
+        "id": "N0572",
+        "type": "solutions",
+        "description": "Use Fapi_doVerify() to verify programmed contents"
+      },
+      {
+        "id": "N0573",
+        "type": "solutions",
+        "description": "Perform CRC check during power-up and runtime"
+      },
+      {
+        "id": "N0574",
+        "type": "solutions",
+        "description": "Use AutoEccGeneration option in Plugin/API"
+      },
+      {
+        "id": "N0575",
+        "type": "solutions",
+        "description": "Use F021 Flash API to calculate and program ECC data"
+      },
+      {
+        "id": "N0576",
+        "type": "solutions",
+        "description": "Use linker-supported ECC generation option"
+      },
+      {
+        "id": "N0577",
+        "type": "solutions",
+        "description": "Program ECC check bits along with Flash"
+      },
+      {
+        "id": "N0578",
+        "type": "solutions",
+        "description": "Align main array Flash programming to 64-bit address boundaries"
+      },
+      {
+        "id": "N0579",
+        "type": "solutions",
+        "description": "Align DCSM OTP programming to 128-bit address boundaries"
+      },
+      {
+        "id": "N0580",
+        "type": "solutions",
+        "description": "Enable ECC logic for error detection and correction"
+      }
+    ]
+  },
+  "causal_vectors": {
+    "indicator_to_error": [],
+    "error_to_cause": [
+      {
+        "from": "N0001",
+        "to": "N0032",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0002",
+        "to": "N0032",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0003",
+        "to": "N0034",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0004",
+        "to": "N0033",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0005",
+        "to": "N0033",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0006",
+        "to": "N0033",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0007",
+        "to": "N0034",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0008",
+        "to": "N0034",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0050",
+        "to": "N0079",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0051",
+        "to": "N0080",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0051",
+        "to": "N0081",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0052",
+        "to": "N0082",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0053",
+        "to": "N0082",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0088",
+        "to": "N0128",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0089",
+        "to": "N0127",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0133",
+        "to": "N0146",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0134",
+        "to": "N0146",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0190",
+        "to": "N0227",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0191",
+        "to": "N0227",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0192",
+        "to": "N0228",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0193",
+        "to": "N0229",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0004",
+        "to": "N0277",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0258",
+        "to": "N0279",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0258",
+        "to": "N0280",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0258",
+        "to": "N0281",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0259",
+        "to": "N0282",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0259",
+        "to": "N0283",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0260",
+        "to": "N0279",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0261",
+        "to": "N0280",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0261",
+        "to": "N0282",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0262",
+        "to": "N0281",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0262",
+        "to": "N0283",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0263",
+        "to": "N0277",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0006",
+        "to": "N0278",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0264",
+        "to": "N0284",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0290",
+        "to": "N0329",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0291",
+        "to": "N0032",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0292",
+        "to": "N0330",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0293",
+        "to": "N0331",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0293",
+        "to": "N0332",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0293",
+        "to": "N0333",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0294",
+        "to": "N0334",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0294",
+        "to": "N0335",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0295",
+        "to": "N0336",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0296",
+        "to": "N0334",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0297",
+        "to": "N0330",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0297",
+        "to": "N0331",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0297",
+        "to": "N0332",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0005",
+        "to": "N0385",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0352",
+        "to": "N0385",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0353",
+        "to": "N0391",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0354",
+        "to": "N0391",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0355",
+        "to": "N0391",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0356",
+        "to": "N0392",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0357",
+        "to": "N0392",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0358",
+        "to": "N0391",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0358",
+        "to": "N0392",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0408",
+        "to": "N0426",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0408",
+        "to": "N0427",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0409",
+        "to": "N0428",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0409",
+        "to": "N0429",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0410",
+        "to": "N0430",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0411",
+        "to": "N0431",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0412",
+        "to": "N0432",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0357",
+        "to": "N0426",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0357",
+        "to": "N0427",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0357",
+        "to": "N0428",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0357",
+        "to": "N0429",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0442",
+        "to": "N0465",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0443",
+        "to": "N0463",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0443",
+        "to": "N0465",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0444",
+        "to": "N0464",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0444",
+        "to": "N0465",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0445",
+        "to": "N0466",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0446",
+        "to": "N0463",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0447",
+        "to": "N0464",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0447",
+        "to": "N0465",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0447",
+        "to": "N0466",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0448",
+        "to": "N0465",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0449",
+        "to": "N0465",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0450",
+        "to": "N0466",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0359",
+        "to": "N0467",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0474",
+        "to": "N0498",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0474",
+        "to": "N0499",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0474",
+        "to": "N0501",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0474",
+        "to": "N0502",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0475",
+        "to": "N0498",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0475",
+        "to": "N0499",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0475",
+        "to": "N0501",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0475",
+        "to": "N0502",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0414",
+        "to": "N0501",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0414",
+        "to": "N0502",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0415",
+        "to": "N0501",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0415",
+        "to": "N0502",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0476",
+        "to": "N0500",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0477",
+        "to": "N0500",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0474",
+        "to": "N0535",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0474",
+        "to": "N0533",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0512",
+        "to": "N0537",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0513",
+        "to": "N0536",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0513",
+        "to": "N0534",
+        "weight": 0.85,
+        "confidence": 0.9
+      }
+    ],
+    "cause_to_solution": [
+      {
+        "from": "N0032",
+        "to": "N0038",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0032",
+        "to": "N0039",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0032",
+        "to": "N0040",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0033",
+        "to": "N0038",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0033",
+        "to": "N0040",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0034",
+        "to": "N0045",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0034",
+        "to": "N0038",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0035",
+        "to": "N0049",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0035",
+        "to": "N0045",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0036",
+        "to": "N0041",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0036",
+        "to": "N0042",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0036",
+        "to": "N0043",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0037",
+        "to": "N0045",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0037",
+        "to": "N0044",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0037",
+        "to": "N0046",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0037",
+        "to": "N0047",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0037",
+        "to": "N0048",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0078",
+        "to": "N0083",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0079",
+        "to": "N0084",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0079",
+        "to": "N0087",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0080",
+        "to": "N0087",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0081",
+        "to": "N0087",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0082",
+        "to": "N0085",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0082",
+        "to": "N0086",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0082",
+        "to": "N0087",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0128",
+        "to": "N0129",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0128",
+        "to": "N0130",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0127",
+        "to": "N0131",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0127",
+        "to": "N0132",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0146",
+        "to": "N0147",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0146",
+        "to": "N0148",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0146",
+        "to": "N0149",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0177",
+        "to": "N0179",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0177",
+        "to": "N0180",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0177",
+        "to": "N0181",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0177",
+        "to": "N0182",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0177",
+        "to": "N0183",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0177",
+        "to": "N0184",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0177",
+        "to": "N0185",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0178",
+        "to": "N0187",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0227",
+        "to": "N0179",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0227",
+        "to": "N0231",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0227",
+        "to": "N0232",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0227",
+        "to": "N0233",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0227",
+        "to": "N0234",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0227",
+        "to": "N0185",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0228",
+        "to": "N0179",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0228",
+        "to": "N0235",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0228",
+        "to": "N0236",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0228",
+        "to": "N0185",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0228",
+        "to": "N0237",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0228",
+        "to": "N0238",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0228",
+        "to": "N0234",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0229",
+        "to": "N0230",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0277",
+        "to": "N0288",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0278",
+        "to": "N0285",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0279",
+        "to": "N0285",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0279",
+        "to": "N0287",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0280",
+        "to": "N0285",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0280",
+        "to": "N0287",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0281",
+        "to": "N0285",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0281",
+        "to": "N0287",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0282",
+        "to": "N0285",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0282",
+        "to": "N0287",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0283",
+        "to": "N0285",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0283",
+        "to": "N0287",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0284",
+        "to": "N0289",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0284",
+        "to": "N0285",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0329",
+        "to": "N0038",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0032",
+        "to": "N0337",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0330",
+        "to": "N0344",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0330",
+        "to": "N0340",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0331",
+        "to": "N0341",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0331",
+        "to": "N0342",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0331",
+        "to": "N0343",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0331",
+        "to": "N0340",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0332",
+        "to": "N0341",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0332",
+        "to": "N0342",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0332",
+        "to": "N0343",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0333",
+        "to": "N0038",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0334",
+        "to": "N0345",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0334",
+        "to": "N0351",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0334",
+        "to": "N0350",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0335",
+        "to": "N0346",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0335",
+        "to": "N0038",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0336",
+        "to": "N0345",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0385",
+        "to": "N0038",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0385",
+        "to": "N0393",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0386",
+        "to": "N0393",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0387",
+        "to": "N0393",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0388",
+        "to": "N0403",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0389",
+        "to": "N0397",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0389",
+        "to": "N0398",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0390",
+        "to": "N0399",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0390",
+        "to": "N0404",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0391",
+        "to": "N0406",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0391",
+        "to": "N0039",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0391",
+        "to": "N0040",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0392",
+        "to": "N0406",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0392",
+        "to": "N0407",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0426",
+        "to": "N0433",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0426",
+        "to": "N0434",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0426",
+        "to": "N0435",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0426",
+        "to": "N0438",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0427",
+        "to": "N0433",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0427",
+        "to": "N0434",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0427",
+        "to": "N0435",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0427",
+        "to": "N0438",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0428",
+        "to": "N0434",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0428",
+        "to": "N0436",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0428",
+        "to": "N0439",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0429",
+        "to": "N0434",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0429",
+        "to": "N0436",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0429",
+        "to": "N0439",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0430",
+        "to": "N0437",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0431",
+        "to": "N0437",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0432",
+        "to": "N0437",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0463",
+        "to": "N0468",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0463",
+        "to": "N0469",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0464",
+        "to": "N0469",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0464",
+        "to": "N0471",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0465",
+        "to": "N0468",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0465",
+        "to": "N0471",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0465",
+        "to": "N0472",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0466",
+        "to": "N0471",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0467",
+        "to": "N0473",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0498",
+        "to": "N0503",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0498",
+        "to": "N0505",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0498",
+        "to": "N0509",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0499",
+        "to": "N0503",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0499",
+        "to": "N0505",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0499",
+        "to": "N0509",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0500",
+        "to": "N0508",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0500",
+        "to": "N0504",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0501",
+        "to": "N0506",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0501",
+        "to": "N0507",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0501",
+        "to": "N0510",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0502",
+        "to": "N0506",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0502",
+        "to": "N0507",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0502",
+        "to": "N0510",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0533",
+        "to": "N0538",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0533",
+        "to": "N0539",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0534",
+        "to": "N0548",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0534",
+        "to": "N0538",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0535",
+        "to": "N0541",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0535",
+        "to": "N0544",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0536",
+        "to": "N0540",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0536",
+        "to": "N0542",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0537",
+        "to": "N0546",
+        "weight": 0.85,
+        "confidence": 0.9
+      },
+      {
+        "from": "N0537",
+        "to": "N0545",
+        "weight": 0.85,
+        "confidence": 0.9
+      }
+    ]
+  }
+}
