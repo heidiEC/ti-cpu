@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TI MCU Troubleshooting Demo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/showdown@2.1.0/dist/showdown.min.js"></script>
+    <style>
+        /* Basic Reset & Font */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            margin: 0;
+            padding: 20px; /* Added padding for overall spacing */
+            display: flex;
+            justify-content: center;
+            min-height: 100vh; /* Ensure body takes full viewport height */
+        }
+
+        /* Main Container for the Grid Layout */
+        .container {
+            width: 100%;
+            max-width: 1400px; /* Increased max-width for wider containers */
+            display: grid;
+            grid-gap: 20px; /* Gap between cards */
+            padding: 20px; /* Internal padding for the container */
+            box-sizing: border-box; /* Include padding in width calculation */
+        }
+
+        /* Responsive Grid Layout */
+        @media (min-width: 768px) {
+            .container {
+                grid-template-columns: 1fr 1fr; /* Two columns on medium screens */
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                grid-template-columns: 1fr 1fr 1fr; /* Three columns on large screens */
+            }
+        }
+
+        /* Card Styling */
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+            display: flex; /* Use flexbox for internal card layout */
+            flex-direction: column; /* Stack content vertically */
+            min-height: 300px; /* Ensure cards have a minimum height */
+        }
+
+        .card-title {
+            font-size: 18px; /* Slightly larger title */
+            font-weight: 500;
+            color: #555;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        /* Knowledge Base Card Specifics */
+        #knowledge-base-card .card-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #error-search {
+            width: 60%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .error-details {
+            animation: fadeIn 0.5s;
+            flex-grow: 1; /* Allows error details to take available space */
+            overflow-y: auto; /* Enable scrolling for long content */
+        }
+
+        .error-code {
+            font-size: 28px; /* Larger error code */
+            font-weight: 700;
+            color: #d9534f;
+            margin-bottom: 5px;
+        }
+
+        .error-description {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 15px;
+            color: #444;
+        }
+
+        .detail-section {
+            margin-bottom: 15px;
+        }
+
+        .detail-label {
+            font-size: 13px; /* Slightly larger label */
+            font-weight: 700;
+            color: #0275d8;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .detail-value, .detail-list li {
+            font-size: 15px; /* Slightly larger value text */
+            margin-top: 5px;
+            background-color: #f9f9f9;
+            padding: 10px; /* More padding for list items */
+            border-radius: 4px;
+            line-height: 1.5;
+        }
+
+        .detail-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Learning Engine Card Specifics */
+        #learning-engine-card .learning-item {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .learning-icon {
+            font-size: 28px; /* Larger icons */
+            margin-right: 15px;
+        }
+
+        .learning-text .title {
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        .learning-text .metric {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .metric .arrow {
+            color: #5cb85c;
+            font-weight: bold;
+        }
+
+        #learning-engine-card .metric {
+            padding: 2px 5px;
+            border-radius: 3px;
+            display: inline-block; /* Keep background color contained */
+        }
+
+        /* Chat Card Specifics */
+        #chat-card {
+            display: flex;
+            flex-direction: column;
+            min-height: 400px; /* Ensure chat card is tall enough */
+        }
+
+        .chat-header {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .chat-header h3 {
+            margin: 0;
+            font-size: 20px;
+            color: #333;
+        }
+
+        .chat-header p {
+            font-size: 14px;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        .chat-window {
+            flex-grow: 1; /* Allows chat window to fill available space */
+            border: 1px solid #ddd;
+            border-radius: 8px; /* More rounded corners */
+            padding: 15px; /* More padding */
+            overflow-y: auto;
+            margin-bottom: 15px;
+            background-color: #f9f9f9;
+            display: flex;
+            flex-direction: column; /* Stack messages */
+        }
+
+        .chat-message {
+            margin-bottom: 10px;
+            padding: 10px 15px; /* More padding for messages */
+            border-radius: 20px; /* More rounded bubbles */
+            max-width: 85%; /* Slightly wider messages */
+            line-height: 1.5;
+            word-wrap: break-word; /* Ensure long words wrap */
+        }
+
+        .user-message {
+            background-color: #0275d8;
+            color: white;
+            align-self: flex-end; /* Align user messages to the right */
+            border-bottom-right-radius: 5px; /* Pointy corner for user message */
+        }
+
+        .bot-message {
+            background-color: #e9ecef;
+            color: #333;
+            align-self: flex-start; /* Align bot messages to the left */
+            border-bottom-left-radius: 5px; /* Pointy corner for bot message */
+        }
+
+        .chat-input-area {
+            display: flex;
+            margin-top: auto; /* Push input area to the bottom */
+        }
+
+        #chat-input {
+            flex-grow: 1;
+            padding: 12px; /* More padding for input */
+            border: 1px solid #ddd;
+            border-radius: 8px 0 0 8px; /* Rounded corners on left */
+            font-size: 15px;
+        }
+
+        #send-btn {
+            padding: 12px 20px; /* More padding for button */
+            border: none;
+            background-color: #0275d8;
+            color: white;
+            border-radius: 0 8px 8px 0; /* Rounded corners on right */
+            cursor: pointer;
+            font-size: 15px;
+            transition: background-color 0.2s ease;
+        }
+
+        #send-btn:hover {
+            background-color: #025aa5;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="knowledge-base-card" class="card">
+            <div class="card-title">
+                <span>TI MCU Knowledge Base</span>
+                <input type="text" id="error-search" placeholder="Search by error ID or description...">
+            </div>
+            <div id="error-display">
+                <!-- Initial dummy content for demonstration -->
+                <div class="error-details">
+                    <div class="error-code">ERR-001</div>
+                    <div class="error-description">Memory access violation (Bus Fault)</div>
+                    <div class="detail-section">
+                        <div class="detail-label">Safety Impact: CRITICAL</div>
+                    </div>
+                    <div class="detail-section">
+                        <div class="detail-label">Most Likely Causes:</div>
+                        <ul class="detail-list">
+                            <li>Null pointer dereference (Weight: 0.8)</li>
+                            <li>Accessing unaligned memory address (Weight: 0.6)</li>
+                        </ul>
+                    </div>
+                    <div class="detail-section">
+                        <div class="detail-label">Recommended Solutions:</div>
+                        <ul class="detail-list">
+                            <li>Check for null pointers before access</li>
+                            <li>Ensure memory alignment for all data structures</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="learning-engine-card" class="card">
+            <div class="card-title">Causal Learning Engine</div>
+            <div class="learning-item">
+                <div class="learning-icon">🧠</div>
+                <div class="learning-text">
+                    <div class="title">Fault → Root Cause Accuracy</div>
+                    <div class="metric">Diagnostic Accuracy: 7.15 → 7.22 <span class="arrow">▲</span></div>
+                </div>
+            </div>
+            <div class="learning-item">
+                <div class="learning-icon">💡</div>
+                <div class="learning-text">
+                    <div class="title">Register State → Fault Classification</div>
+                    <div class="metric">Classification Confidence: 0.91 → 0.93 <span class="arrow">▲</span></div>
+                </div>
+            </div>
+            <div class="learning-item">
+                <div class="learning-icon">⚙️</div>
+                <div class="learning-text">
+                    <div class="title">System Confidence</div>
+                    <div class="metric" style="background: #5cb85c; color: white; padding: 2px 5px; border-radius: 3px;">94% → 95%</div>
+                </div>
+            </div>
+            <div class="learning-item">
+                <div class="learning-icon">🌐</div>
+                <div class="learning-text">
+                    <div class="title">Global C2000 Network</div>
+                    <ul style="font-size:13px; margin: 5px 0; padding-left: 20px;">
+                        <li>Contributing data from 450 systems</li>
+                        <li>72 unique application environments</li>
+                        <li>Template confidence: 96% (very high trust)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="chat-card" class="card">
+            <div class="chat-header">
+                <h3>MCU Troubleshooting Assistant</h3>
+                <p>Powered by Causal AI</p>
+            </div>
+            <div class="chat-window" id="chat-window">
+                <div class="chat-message bot-message">Hello! I'm your TI MCU troubleshooting assistant. I can help you diagnose hardware faults, understand register states, and guide you through debugging procedures. What are you experiencing?</div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" id="chat-input" placeholder="Describe the issue or ask about a fault...">
+                <button id="send-btn">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let cvotData = {};
+            const mdConverter = new showdown.Converter();
+
+            // Fetch the CVOT data from the backend
+            fetch('/api/cvot')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    cvotData = data;
+                    console.log("CVOT data loaded successfully from API.");
+                    // Display an initial error or a welcome message in the knowledge base
+                    if (cvotData.nodes && cvotData.nodes.error_conditions && cvotData.nodes.error_conditions.length > 0) {
+                        displayErrorDetails(cvotData.nodes.error_conditions[0].id);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error loading CVOT data from API:', error);
+                    // Fallback dummy data if API call fails
+                    cvotData = {
+                        "nodes": {
+                            "error_conditions": [{
+                                "id": "N0001",
+                                "type": "error_conditions",
+                                "description": "Bus fault",
+                                "severity": "CRITICAL"
+                            }, {
+                                "id": "N0002",
+                                "type": "error_conditions",
+                                "description": "Stack overflow",
+                                "severity": "HIGH"
+                            }],
+                            "root_causes": [{
+                                "id": "C0001",
+                                "type": "root_causes",
+                                "description": "Null pointer dereference"
+                            }, {
+                                "id": "C0002",
+                                "type": "root_causes",
+                                "description": "Accessing unaligned memory address"
+                            }, {
+                                "id": "C0003",
+                                "type": "root_causes",
+                                "description": "Insufficient stack size"
+                            }],
+                            "solutions": [{
+                                "id": "S0001",
+                                "type": "solutions",
+                                "description": "Check for null pointers before access"
+                            }, {
+                                "id": "S0002",
+                                "type": "solutions",
+                                "description": "Ensure memory alignment for all data structures"
+                            }, {
+                                "id": "S0003",
+                                "type": "solutions",
+                                "description": "Increase stack memory allocation"
+                            }]
+                        },
+                        "causal_vectors": {
+                            "error_to_cause": [{
+                                "from": "N0001",
+                                "to": "C0001",
+                                "weight": 0.8
+                            }, {
+                                "from": "N0001",
+                                "to": "C0002",
+                                "weight": 0.6
+                            }, {
+                                "from": "N0002",
+                                "to": "C0003",
+                                "weight": 0.9
+                            }],
+                            "cause_to_solution": [{
+                                "from": "C0001",
+                                "to": "S0001",
+                                "weight": 1.0
+                            }, {
+                                "from": "C0002",
+                                "to": "S0002",
+                                "weight": 1.0
+                            }, {
+                                "from": "C0003",
+                                "to": "S0003",
+                                "weight": 1.0
+                            }]
+                        }
+                    };
+                    console.log("Using fallback CVOT data due to API error.");
+                    // Display the first error from fallback data
+                    if (cvotData.nodes && cvotData.nodes.error_conditions && cvotData.nodes.error_conditions.length > 0) {
+                        displayErrorDetails(cvotData.nodes.error_conditions[0].id);
+                    }
+                });
+
+
+            const searchInput = document.getElementById('error-search');
+            searchInput.addEventListener('keyup', function(event) {
+                if (event.key === 'Enter') {
+                    const query = searchInput.value.toLowerCase();
+                    displayErrorDetails(query);
+                }
+            });
+
+            const sendBtn = document.getElementById('send-btn');
+            const chatInput = document.getElementById('chat-input');
+            chatInput.addEventListener('keyup', function(event) {
+                if (event.key === 'Enter') {
+                    sendBtn.click();
+                }
+            });
+
+            sendBtn.addEventListener('click', handleChat);
+
+            function displayErrorDetails(query) {
+                // Search for error by ID or description
+                const errorNode = cvotData.nodes.error_conditions.find(node =>
+                    node.id.toLowerCase() === query ||
+                    node.description.toLowerCase().includes(query)
+                );
+
+                const display = document.getElementById('error-display');
+                if (!errorNode) {
+                    display.innerHTML = '<div class="error-details"><p>Error condition not found. Please try searching by ID (e.g., N0001) or a keyword from the description.</p></div>';
+                    return;
+                }
+
+                // Find related nodes
+                const errorId = errorNode.id;
+                const causes = findRelatedNodes('error_to_cause', errorId, 'root_causes');
+                const solutions = findRelatedNodesForCauses(causes, 'cause_to_solution', 'solutions');
+
+                let html = `
+                    <div class="error-details">
+                        <div class="error-code">${errorNode.id || 'N/A'}</div> <!-- Changed to errorNode.id -->
+                        <div class="error-description">${errorNode.description}</div>
+                        <div class="detail-section">
+                            <div class="detail-label">Severity: ${errorNode.severity || 'Unknown'}</div>
+                        </div>
+                        <div class="detail-section">
+                            <div class="detail-label">Most Likely Causes:</div>
+                            <ul class="detail-list">${formatList(causes)}</ul>
+                        </div>
+                        <div class="detail-section">
+                            <div class="detail-label">Recommended Solutions:</div>
+                            <ul class="detail-list">${formatList(solutions)}</ul>
+                        </div>
+                    </div>`;
+                display.innerHTML = html;
+            }
+
+            function findRelatedNodes(vectorType, fromId, targetNodeType) {
+                if (!cvotData.causal_vectors || !cvotData.causal_vectors[vectorType] || !cvotData.nodes || !cvotData.nodes[targetNodeType]) {
+                    return []; // Return empty if data is missing
+                }
+
+                const relatedIds = cvotData.causal_vectors[vectorType]
+                    .filter(v => v.from === fromId)
+                    .map(v => ({
+                        id: v.to,
+                        weight: v.weight
+                    }));
+
+                return relatedIds.map(rel => {
+                    const node = cvotData.nodes[targetNodeType].find(n => n.id === rel.id);
+                    return { ...node,
+                        weight: rel.weight
+                    };
+                }).filter(node => node.description).sort((a, b) => (b.weight || 0) - (a.weight || 0));
+            }
+
+            function findRelatedNodesForCauses(causes, vectorType, targetNodeType) {
+                let allSolutions = [];
+                causes.forEach(cause => {
+                    const causeId = cause.id;
+                    const relatedSolutions = findRelatedNodes(vectorType, causeId, targetNodeType);
+                    allSolutions.push(...relatedSolutions);
+                });
+                // Return unique solutions, keeping the highest weight if duplicated
+                const uniqueSolutions = new Map();
+                allSolutions.forEach(sol => {
+                    if (sol.description && (!uniqueSolutions.has(sol.id) || uniqueSolutions.get(sol.id).weight < sol.weight)) {
+                        uniqueSolutions.set(sol.id, sol);
+                    }
+                });
+                return Array.from(uniqueSolutions.values()).sort((a, b) => b.weight - a.weight);
+            }
+
+            function formatList(items) {
+                if (!items || items.length === 0) return '<li>No information available.</li>';
+                return items.map(item => `<li>${item.description} (Weight: ${item.weight !== undefined ? item.weight : 'N/A'})</li>`).join('');
+            }
+
+            async function handleChat() {
+                const userInput = chatInput.value;
+                if (!userInput.trim()) return;
+
+                appendMessage(userInput, 'user-message');
+                chatInput.value = '';
+
+                try {
+                    // This fetch call assumes a backend API at /api/chat that processes the message
+                    // and returns a 'reply' field.
+                    const response = await fetch('/api/chat', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            message: userInput
+                        })
+                    });
+                    const data = await response.json();
+                    const botResponseHtml = mdConverter.makeHtml(data.reply);
+                    appendMessage(botResponseHtml, 'bot-message', true);
+                } catch (error) {
+                    console.error('Error with chat API:', error);
+                    appendMessage('Sorry, I encountered an error communicating with the AI. Please try again later.', 'bot-message');
+                }
+            }
+
+            function appendMessage(content, className, isHtml = false) {
+                const chatWindow = document.getElementById('chat-window');
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `chat-message ${className}`;
+                if (isHtml) {
+                    messageDiv.innerHTML = content;
+                } else {
+                    messageDiv.textContent = content;
+                }
+                chatWindow.appendChild(messageDiv);
+                chatWindow.scrollTop = chatWindow.scrollHeight; // Auto-scroll to the latest message
+            }
+
+        });
+    </script>
+
+</body>
+</html>

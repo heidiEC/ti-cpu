@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TI MCU Troubleshooting Demo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/showdown@2.1.0/dist/showdown.min.js"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: 20px;
+        }
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        .card-title {
+            font-size: 16px;
+            font-weight: 500;
+            color: #555;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        #knowledge-base-card .card-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        #error-search {
+            width: 60%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .error-details {
+            animation: fadeIn 0.5s;
+        }
+        .error-code {
+            font-size: 24px;
+            font-weight: 700;
+            color: #d9534f;
+            margin-bottom: 5px;
+        }
+        .error-description {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+        .detail-section {
+            margin-bottom: 15px;
+        }
+        .detail-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #0275d8;
+            text-transform: uppercase;
+        }
+        .detail-value, .detail-list li {
+            font-size: 14px;
+            margin-top: 5px;
+            background-color: #f9f9f9;
+            padding: 8px;
+            border-radius: 4px;
+        }
+        .detail-list {
+            list-style: none;
+            padding: 0;
+        }
+        #learning-engine-card .learning-item {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .learning-icon {
+            font-size: 24px;
+            margin-right: 15px;
+        }
+        .learning-text .title {
+            font-weight: 500;
+        }
+        .learning-text .metric {
+            font-size: 14px;
+            color: #666;
+        }
+        .metric .arrow {
+            color: #5cb85c;
+        }
+        #chat-card {
+            display: flex;
+            flex-direction: column;
+        }
+        .chat-header {
+            text-align: center;
+        }
+        .chat-header h3 { margin: 0; }
+        .chat-header p { font-size: 13px; color: #666; }
+        .chat-window {
+            flex-grow: 1;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 10px;
+            overflow-y: auto;
+            margin-bottom: 15px;
+            background-color: #f9f9f9;
+        }
+        .chat-message {
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            border-radius: 18px;
+            max-width: 80%;
+            line-height: 1.4;
+        }
+        .bot-message {
+            background-color: #e9ecef;
+            align-self: flex-start;
+        }
+        .chat-input-area {
+            display: flex;
+        }
+        #chat-input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+        }
+        #send-btn {
+            padding: 10px 15px;
+            border: none;
+            background-color: #0275d8;
+            color: white;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+        #send-btn:hover { background-color: #025aa5; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div id="knowledge-base-card" class="card">
+        <div class="card-title">
+            <span>TI MCU Knowledge Base</span>
+            <input type="text" id="error-search" placeholder="Search by error...">
+        </div>
+        <div id="error-display">
+            <div class="error-details">
+                <div class="error-code">ERR-001</div>
+                <div class="error-description">Memory access violation (Bus Fault)</div>
+                <div class="detail-section">
+                    <div class="detail-label">Safety Impact: CRITICAL</div>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-label">Most Likely Causes:</div>
+                    <ul class="detail-list">
+                        <li>Null pointer dereference (Weight: 0.8)</li>
+                        <li>Accessing unaligned memory address (Weight: 0.6)</li>
+                    </ul>
+                </div>
+                <div class="detail-section">
+                    <div class="detail-label">Recommended Solutions:</div>
+                    <ul class="detail-list">
+                        <li>Check for null pointers before access</li>
+                        <li>Ensure memory alignment for all data structures</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="learning-engine-card" class="card">
+        <div class="card-title">Causal Learning Engine</div>
+        <div class="learning-item">
+            <div class="learning-icon">🧠</div>
+            <div class="learning-text">
+                <div class="title">Fault → Root Cause Accuracy</div>
+                <div class="metric">Diagnostic Accuracy: 7.15 → 7.22 <span class="arrow">▲</span></div>
+            </div>
+        </div>
+        <div class="learning-item">
+            <div class="learning-icon">💡</div>
+            <div class="learning-text">
+                <div class="title">Register State → Fault Classification</div>
+                <div class="metric">Classification Confidence: 0.91 → 0.93 <span class="arrow">▲</span></div>
+            </div>
+        </div>
+        <div class="learning-item">
+            <div class="learning-icon">⚙️</div>
+            <div class="learning-text">
+                <div class="title">System Confidence</div>
+                <div class="metric" style="background: #5cb85c; color: white; padding: 2px 5px; border-radius: 3px;">94% → 95%</div>
+            </div>
+        </div>
+         <div class="learning-item">
+            <div class="learning-icon">🌐</div>
+            <div class="learning-text">
+                <div class="title">Global C2000 Network</div>
+                <ul style="font-size:13px; margin: 5px 0; padding-left: 20px;">
+                    <li>Contributing data from 450 systems</li>
+                    <li>72 unique application environments</li>
+                    <li>Template confidence: 96% (very high trust)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="chat-card" class="card">
+        <div class="chat-header">
+            <h3>MCU Troubleshooting Assistant</h3>
+            <p>Powered by Causal AI</p>
+        </div>
+        <div class="chat-window" id="chat-window">
+             <div class="chat-message bot-message">Hello! I'm your TI MCU troubleshooting assistant. I can help you diagnose hardware faults, understand register states, and guide you through debugging procedures. What are you experiencing?</div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Describe the issue or ask about a fault...">
+            <button id="send-btn">Send</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        let cvotData = {};
+        const mdConverter = new showdown.Converter();
+
+        // Fetch the CVOT data from the backend
+        fetch('/api/cvot')
+            .then(response => response.json())
+            .then(data => {
+                cvotData = data;
+                console.log("CVOT data loaded successfully.");
+            })
+            .catch(error => console.error('Error loading CVOT data:', error));
+
+        const searchInput = document.getElementById('error-search');
+        searchInput.addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                const query = searchInput.value.toLowerCase();
+                displayErrorDetails(query);
+            }
+        });
+
+        const sendBtn = document.getElementById('send-btn');
+        const chatInput = document.getElementById('chat-input');
+        chatInput.addEventListener('keyup', function(event) {
+             if (event.key === 'Enter') {
+                sendBtn.click();
+            }
+        });
+        
+        sendBtn.addEventListener('click', handleChat);
+
+        function displayErrorDetails(query) {
+            // A more robust search that checks descriptions and codes
+            const errorNode = cvotData.nodes.error_conditions.find(node => 
+                node.description.toLowerCase().includes(query) || 
+                (node.code && node.code.toLowerCase() === query)
+            );
+
+            const display = document.getElementById('error-display');
+            if (!errorNode) {
+                display.innerHTML = '<div class="error-details"><p>Error condition not found.</p></div>';
+                return;
+            }
+
+            // Find related nodes
+            const errorId = errorNode.id;
+            const causes = findRelatedNodes('error_to_cause', errorId, 'root_causes');
+            const solutions = findRelatedNodesForCauses(causes, 'cause_to_solution', 'solutions');
+            
+            let html = `
+                <div class="error-details">
+                    <div class="error-code">${errorNode.code || 'N/A'}</div>
+                    <div class="error-description">${errorNode.description}</div>
+                    <div class="detail-section">
+                        <div class="detail-label">Severity: ${errorNode.severity || 'Unknown'}</div>
+                    </div>
+                    <div class="detail-section">
+                        <div class="detail-label">Most Likely Causes:</div>
+                        <ul class="detail-list">${formatList(causes)}</ul>
+                    </div>
+                    <div class="detail-section">
+                        <div class="detail-label">Recommended Solutions:</div>
+                        <ul class="detail-list">${formatList(solutions)}</ul>
+                    </div>
+                </div>`;
+            display.innerHTML = html;
+        }
+
+        function findRelatedNodes(vectorType, fromId, targetNodeType) {
+            const relatedIds = cvotData.causal_vectors[vectorType]
+                .filter(v => v.from === fromId)
+                .map(v => ({ id: v.to, weight: v.weight }));
+
+            return relatedIds.map(rel => {
+                const node = cvotData.nodes[targetNodeType].find(n => n.id === rel.id);
+                return { ...node, weight: rel.weight };
+            }).sort((a, b) => (b.weight || 0) - (a.weight || 0));
+        }
+        
+        function findRelatedNodesForCauses(causes, vectorType, targetNodeType) {
+            let allSolutions = [];
+            causes.forEach(cause => {
+                const causeId = cause.id;
+                const relatedSolutions = findRelatedNodes(vectorType, causeId, targetNodeType);
+                allSolutions.push(...relatedSolutions);
+            });
+            // Return unique solutions, keeping the highest weight if duplicated
+            const uniqueSolutions = new Map();
+            allSolutions.forEach(sol => {
+                if (!uniqueSolutions.has(sol.id) || uniqueSolutions.get(sol.id).weight < sol.weight) {
+                    uniqueSolutions.set(sol.id, sol);
+                }
+            });
+            return Array.from(uniqueSolutions.values()).sort((a, b) => b.weight - a.weight);
+        }
+
+        function formatList(items) {
+            if (!items || items.length === 0) return '<li>No information available.</li>';
+            return items.map(item => `<li>${item.description} (Weight: ${item.weight || 'N/A'})</li>`).join('');
+        }
+        
+        async function handleChat() {
+            const userInput = chatInput.value;
+            if (!userInput.trim()) return;
+
+            appendMessage(userInput, 'user-message');
+            chatInput.value = '';
+
+            try {
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ message: userInput })
+                });
+                const data = await response.json();
+                const botResponseHtml = mdConverter.makeHtml(data.reply);
+                appendMessage(botResponseHtml, 'bot-message', true);
+            } catch (error) {
+                console.error('Error with chat API:', error);
+                appendMessage('Sorry, I encountered an error.', 'bot-message');
+            }
+        }
+
+        function appendMessage(content, className, isHtml = false) {
+            const chatWindow = document.getElementById('chat-window');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `chat-message ${className}`;
+            if (isHtml) {
+                messageDiv.innerHTML = content;
+            } else {
+                messageDiv.textContent = content;
+            }
+            chatWindow.appendChild(messageDiv);
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+        }
+
+    });
+</script>
+
+</body>
+</html>
